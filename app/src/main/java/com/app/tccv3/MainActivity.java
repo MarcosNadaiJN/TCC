@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,13 +16,20 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton newlist;
 
+    private int TotalBooks;
+    private int FinishedBooks;
+    private int LeftBooks;
+    private int TotalPages;
+    private int ReadPages;
+    private int LeftPages;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        newlist = (FloatingActionButton) findViewById(R.id.floatingActionButton_newlist);
+        newlist = (FloatingActionButton) findViewById(R.id.floatingActionButton_newbook);
         newlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
