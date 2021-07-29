@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textview_titlehomescreen"
+        android:id="@+id/textview_titlebooklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -49,34 +49,34 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <TextView
-        android:id="@+id/textview_totalbooks"
+        android:id="@+id/textview_totalbooks_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/total_of_books"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView_finishedbooks"
+        app:layout_constraintEnd_toStartOf="@+id/textView_finishedbooks_booklistscreen"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_topheader" />
 
     <TextView
-        android:id="@+id/textView_finishedbooks"
+        android:id="@+id/textView_finishedbooks_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/finished_books"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_titlehomescreen"
+        app:layout_constraintEnd_toEndOf="@+id/textview_titlebooklistscreen"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textview_totalbooks"
-        app:layout_constraintStart_toStartOf="@+id/textview_titlehomescreen"
+        app:layout_constraintStart_toEndOf="@+id/textview_totalbooks_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textview_titlebooklistscreen"
         app:layout_constraintTop_toTopOf="@+id/guideline_topheader" />
 
     <TextView
-        android:id="@+id/textView_leftbooks"
+        android:id="@+id/textView_leftbooks_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/books_left"
@@ -85,7 +85,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView_finishedbooks"
+        app:layout_constraintStart_toEndOf="@+id/textView_finishedbooks_booklistscreen"
         app:layout_constraintTop_toTopOf="@+id/guideline_topheader" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -96,49 +96,49 @@
         app:layout_constraintGuide_percent="0.07" />
 
     <TextView
-        android:id="@+id/textview_totalbooksValue"
+        android:id="@+id/textview_totalbooksValue_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooks"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooks"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooks" />
+        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooks_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textview_totalbooks_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooks_booklistscreen" />
 
     <TextView
-        android:id="@+id/textview_totalbooksValue2"
+        android:id="@+id/textview_totalbooksValue2_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_finishedbooks"
-        app:layout_constraintStart_toStartOf="@+id/textView_finishedbooks"
-        app:layout_constraintTop_toBottomOf="@+id/textView_finishedbooks" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView_finishedbooks_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textView_finishedbooks_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView_finishedbooks_booklistscreen" />
 
     <TextView
-        android:id="@+id/textview_totalbooksValue3"
+        android:id="@+id/textview_totalbooksValue3_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_leftbooks"
-        app:layout_constraintStart_toStartOf="@+id/textView_leftbooks"
-        app:layout_constraintTop_toBottomOf="@+id/textView_leftbooks" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView_leftbooks_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textView_leftbooks_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView_leftbooks_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_totalPages"
+        android:id="@+id/textView_totalPages_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -146,13 +146,13 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue"
+        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue_booklistscreen"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue" />
+        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_readpages"
+        android:id="@+id/textView_readpages_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -160,13 +160,13 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue2"
+        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue2_booklistscreen"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue2"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue2" />
+        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue2_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue2_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_leftpages"
+        android:id="@+id/textView_leftpages_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -174,66 +174,67 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue3"
+        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue3_booklistscreen"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue3"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue3" />
+        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue3_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue3_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_totalpagesvalue"
+        android:id="@+id/textView_totalpagesvalue_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_totalPages"
-        app:layout_constraintStart_toStartOf="@+id/textView_totalPages"
-        app:layout_constraintTop_toBottomOf="@+id/textView_totalPages" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_totalPages_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textView_totalPages_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView_totalPages_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_readpagesvalue"
+        android:id="@+id/textView_readpagesvalue_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_readpages"
-        app:layout_constraintStart_toStartOf="@+id/textView_readpages"
-        app:layout_constraintTop_toBottomOf="@+id/textView_readpages" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_readpages_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textView_readpages_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView_readpages_booklistscreen" />
 
     <TextView
-        android:id="@+id/textView_leaftpagesvalue"
+        android:id="@+id/textView_leaftpagesvalue_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="0"
+        android:text="@string/zero_defaultValue"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_leftpages"
-        app:layout_constraintStart_toStartOf="@+id/textView_leftpages"
-        app:layout_constraintTop_toBottomOf="@+id/textView_leftpages" />
+        app:layout_constraintEnd_toEndOf="@+id/textView_leftpages_booklistscreen"
+        app:layout_constraintStart_toStartOf="@+id/textView_leftpages_booklistscreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView_leftpages_booklistscreen" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_booklistscreen"
         style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
         android:layout_width="309dp"
         android:layout_height="wrap_content"
         android:indeterminate="false"
-        android:paddingEnd="16px"
+        android:paddingEnd="16dp"
         android:progress="70"
         android:progressTint="#03A9F4"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottomheader"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline_rightmargin"
-        app:layout_constraintTop_toTopOf="@+id/guideline_upperheader" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_upperheader"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -243,10 +244,10 @@
         app:layout_constraintGuide_begin="346dp" />
 
     <TextView
-        android:id="@+id/textView_percentage"
+        android:id="@+id/textView_percentage_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="70%"
+        android:text="@string/progress_percentage_defaultvalue"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottomheader"
@@ -265,7 +266,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_bottomheader" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton_newlist"
+        android:id="@+id/floatingActionButton_newbook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -275,6 +276,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="24dp"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:focusable="true"
+        android:contentDescription="@string/addlist_floatingbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
