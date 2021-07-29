@@ -17,4 +17,10 @@
     <string name="current_page">Pagina Atual:</string>
     <string name="read_pages_bookmenu">Paginas Lidas:</string>
     <string name="leaft_pages">Paginas Restantes:</string>
+    <string name="list_name">Nome da Lista</string>
+    <string name="addlist_floatingbutton">AddList</string>
+    <string name="zero_defaultValue">0</string>
+    <string name="progress_percentage_defaultvalue">0%</string>
+    <string name="addbookfloatingbutton_description">AddBookFloatingButton</string>
+    <string name="bookimage_description">BookImage</string>
 </resources>
