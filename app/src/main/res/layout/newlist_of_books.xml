@@ -54,9 +54,9 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="0dp"
                 android:backgroundTint="#FFFFFF"
+                android:onClick="add"
                 android:text="@string/add_button"
-                android:textColor="#03A9F4"
-                android:onClick="add"/>
+                android:textColor="#03A9F4" />
 
             <Button
                 android:id="@+id/button_cancel_addlist"
