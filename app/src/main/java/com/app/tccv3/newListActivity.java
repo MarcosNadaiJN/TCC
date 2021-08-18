@@ -16,6 +16,8 @@ public class newListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newlist_of_books);
 
+        BookListDAO DAO = new BookListDAO();
+
         EditText ListTitle = (EditText) findViewById(R.id.edittext_listtitle_addlistscreen);
 
         Button cancel = (Button) findViewById(R.id.button_cancel_addlist);
@@ -31,16 +33,10 @@ public class newListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Title = ListTitle.getText().toString();
-
                 BookList List = new BookList(Title);
-                String IDtoAdd = List.getIDBookList();
+                DAO.salva(List);
 
-
-                Intent data = new Intent();
-                data.setData(Uri.parse(IDtoAdd));
-
-
-                finish();
+                startActivity(new Intent(newListActivity.this, MainActivity.class));
             }
         });
 
