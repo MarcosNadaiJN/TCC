@@ -22,4 +22,9 @@ public class BookList {
     public String getIDBookList() {
         return IDBookList;
     }
+
+    @Override
+    public String toString() {
+        return ListTitle;
+    }
 }
