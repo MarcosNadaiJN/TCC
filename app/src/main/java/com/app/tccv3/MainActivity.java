@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,13 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private int LeftPages;
     private ArrayList<String> IDBookLists;
 
-
-//    ActivityResultLauncher<String> GetListID = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-//        @Override
-//        public void onActivityResult(Uri uri){
-//            System.out.println(uri);
-//        }
-//    });
+    private String teste;
 
 
     @Override
@@ -46,11 +41,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BookListDAO DAO = new BookListDAO();
+
+        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                        }
+                    }
+                });
+
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
+        BookListView.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                DAO.allLists()));
+
+
 
         newlist = (FloatingActionButton) findViewById(R.id.floatingActionButton_newList);
         newlist.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openNewListActivity();}
+            public void onClick(View v) {openSomeActivityForResult();}
         });
 
     }
@@ -65,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, newListActivity.class);
         activityLaucher.launch(intent, result -> {
             if (result.getResultCode() == Activity.RESULT_OK) {
-                // There are no request codes
                 Intent data = result.getData();
             }
         });
