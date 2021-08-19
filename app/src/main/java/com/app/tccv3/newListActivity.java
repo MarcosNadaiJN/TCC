@@ -1,7 +1,5 @@
 package com.app.tccv3;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,9 +32,9 @@ public class newListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String Title = ListTitle.getText().toString();
                 BookList List = new BookList(Title);
-                DAO.salva(List);
+                DAO.save(List);
 
-                startActivity(new Intent(newListActivity.this, MainActivity.class));
+                finish();
             }
         });
 
