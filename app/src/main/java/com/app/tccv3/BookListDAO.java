@@ -8,7 +8,7 @@ public class BookListDAO {
     private final static List<BookList> BookLists = new ArrayList<>();
 
 
-    public void salva(BookList booklist) {
+    public void save(BookList booklist) {
         BookLists.add(booklist);
     }
 
