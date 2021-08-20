@@ -12,7 +12,7 @@
     <string name="cancel_button">Cancelar</string>
     <string name="book_title">Titulo:</string>
     <string name="book_author">Autor:</string>
-    <string name="current_book_list">Lista:</string>
+    <string name="current_book_list">Categoria:</string>
     <string name="pages_number">Total de Paginas:</string>
     <string name="current_page">Pagina Atual:</string>
     <string name="read_pages_bookmenu">Paginas Lidas:</string>
