@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void test(){
+    }
+
     public void openNewListActivity() {
         Intent intent = new Intent(this, newListActivity.class);
         startActivity(intent);
