@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class newListActivity extends AppCompatActivity {
@@ -18,6 +19,12 @@ public class newListActivity extends AppCompatActivity {
 
         EditText ListTitle = (EditText) findViewById(R.id.edittext_listtitle_addlistscreen);
 
+        ConfigureCancelButton();
+        ConfigureAddButton(DAO, ListTitle);
+
+    }
+
+    private void ConfigureCancelButton() {
         Button cancel = (Button) findViewById(R.id.button_cancel_addlist);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,22 +32,29 @@ public class newListActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    private void ConfigureAddButton(BookListDAO DAO, EditText ListTitle) {
         Button add = (Button) findViewById(R.id.button_add_addlist);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Title = ListTitle.getText().toString();
-                BookList List = new BookList(Title);
-                DAO.save(List);
+                BookList List = createBookList(ListTitle);
+                save(List, DAO);
 
                 finish();
             }
         });
-
     }
 
+    private void save(BookList List, BookListDAO DAO) {
+        DAO.save(List);
+    }
 
-    public void add(View view) {
+    @NonNull
+    private BookList createBookList(EditText ListTitle) {
+        String Title = ListTitle.getText().toString();
+        BookList List = new BookList(Title);
+        return List;
     }
 }
