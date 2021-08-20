@@ -11,13 +11,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private int LeftPages;
 
     private FloatingActionButton newlist;
-    BookListDAO DAO = new BookListDAO();
+    private final BookListDAO DAO = new BookListDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +51,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        ConfigureBooklistLists();
+    }
 
+    private void ConfigureBooklistLists() {
         ListView BookListView = findViewById(R.id.listview_listofbooks);
+        final List<BookList> bookLists = DAO.allLists();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                DAO.allLists()));
+                bookLists));
+        BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BookList chosenBooklist = bookLists.get(position);
+
+            }
+        });
     }
 
     public void openNewListActivity() {
