@@ -224,16 +224,16 @@
     <ProgressBar
         android:id="@+id/progressBar_booklistscreen"
         style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
-        android:layout_width="309dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
         android:indeterminate="false"
         android:paddingEnd="16dp"
         android:progress="70"
         android:progressTint="#03A9F4"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottomheader"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline_rightmargin"
-        app:layout_constraintTop_toTopOf="@+id/guideline_upperheader"
+        app:layout_constraintTop_toBottomOf="@+id/textView_readpagesvalue_booklistscreen"
         tools:ignore="RtlSymmetry" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -247,14 +247,14 @@
         android:id="@+id/textView_percentage_booklistscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
         android:text="@string/progress_percentage_defaultvalue"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottomheader"
         app:layout_constraintEnd_toStartOf="@+id/guideline_leaftmargin"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline_upperheader" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_readpagesvalue_booklistscreen" />
 
     <ListView
         android:id="@+id/listview_listofbooks"
