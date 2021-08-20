@@ -31,7 +31,6 @@
                 android:focusable="true" />
 
             <EditText
-                android:inputType="text"
                 android:id="@+id/edittext_title_book"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
@@ -41,10 +40,10 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/book_title"
+                android:inputType="text"
                 android:maxHeight="70dp" />
 
             <EditText
-                android:inputType="text"
                 android:id="@+id/edittext_author_book"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
@@ -54,10 +53,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/book_author"
+                android:inputType="text"
                 android:maxHeight="70dp" />
 
             <TextView
-                android:id="@+id/textview_list_book"
+                android:id="@+id/textview_book_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -70,8 +70,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:inputType="number"
-                android:id="@+id/textview_list_book_value"
+                android:id="@+id/edittext_total_pages_book_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -81,6 +80,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
+                android:inputType="number"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
 
@@ -111,8 +111,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:inputType="number"
-                android:id="@+id/textview_currentpage_book_value"
+                android:id="@+id/edittext_currentpage_book_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -122,6 +121,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
+                android:inputType="number"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
 
@@ -153,7 +153,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textview_leaftpages_book"
+                android:id="@+id/textview_leftpages_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -166,13 +166,13 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textview_leaftpages_book_value"
+                android:id="@+id/textview_leftpages_book_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="354dp"
-                android:layout_toEndOf="@+id/textview_leaftpages_book"
+                android:layout_toEndOf="@+id/textview_leftpages_book"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
