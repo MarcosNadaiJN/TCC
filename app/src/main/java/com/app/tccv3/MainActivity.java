@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int LeftPages;
 
     private FloatingActionButton newBook;
+
     private final BookDAO DAO = new BookDAO();
 
     @Override
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         newBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewBookActivity();}
+                openNewBookActivity();
+            }
         });
 
     }
