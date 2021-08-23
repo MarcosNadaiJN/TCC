@@ -27,9 +27,9 @@ public class newBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_book);
 
-        BookDAO DAO = new BookDAO();
-
         InitializingFields();
+
+        BookDAO DAO = new BookDAO();
 
         ConfigureCancelButton();
 
@@ -52,7 +52,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureCancelButton() {
-        Button cancel = (Button) findViewById(R.id.button_cancel_addlist);
+        Button cancel = (Button) findViewById(R.id.button_add_book);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO, EditText BookName) {
-        Button add = (Button) findViewById(R.id.button_add_addlist);
+        Button add = (Button) findViewById(R.id.button_cancel_book);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
