@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ConfigureBooklistLists();
+        ConfigureBookList();
     }
 
-    private void ConfigureBooklistLists() {
+    private void ConfigureBookList() {
         ListView BookListView = findViewById(R.id.listview_listofbooks);
-        final List<book> bookLists = DAO.AllBooks();
+        final List<Book> bookLists = DAO.AllBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
         BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                book chosenBooklist = bookLists.get(position);
+                Book chosenBook = bookLists.get(position);
+                Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
+                OpenBookEditor.putExtra("book", chosenBook);
+                startActivity(OpenBookEditor);
 
             }
         });
