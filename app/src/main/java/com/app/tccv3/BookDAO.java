@@ -5,14 +5,14 @@ import java.util.List;
 
 public class BookDAO {
 
-    private final static List<book> BookList = new ArrayList<>();
+    private final static List<Book> BookList = new ArrayList<>();
 
 
-    public void save(book book) {
+    public void save(Book book) {
         BookList.add(book);
     }
 
-    public List<book> AllBooks() {
+    public List<Book> AllBooks() {
         return new ArrayList<>(BookList);
     }
 
