@@ -78,7 +78,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO, EditText BookName) {
-        Button add = (Button) findViewById(R.id.button_add_book);
+        Button add = (Button) findViewById(R.id.button_save_book);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +98,14 @@ public class newBookActivity extends AppCompatActivity {
     @NonNull
     private Book createBook(EditText BookName) {
         String bookName = BookName.getText().toString();
-        Book newBook = new Book(bookName);
+        String bookAuthor = BookAuthor.getText().toString();
+        String bookCategory = BookCategory.getText().toString();
+        int book_totalPages = Integer.parseInt(BookTotalPages_Value.toString());
+        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.toString());
+        int book_leftPages = book_totalPages-book_currentPage;
+
+        Book newBook = new Book(bookName, bookAuthor, bookCategory, book_totalPages,
+                book_currentPage, book_leftPages);
         return newBook;
     }
 
