@@ -9,22 +9,23 @@ public class Book implements Serializable {
 
     private static int ID;
 
-    Book(String name, String Author, String BookCategory, int totalPages, int CurrentPage,
-         int leftPages){
-        //this.IDBook = UUID.randomUUID().toString();
+    Book(String name, String Author, int totalPages, int CurrentPage){
+//        this.BookImage = Image;
         this.name = name;
-        this.finished = false;
+        this.Author = Author;
+        this.totalPages = totalPages;
+        this.currentPage = CurrentPage;
+        this.leftPages = totalPages - CurrentPage;
+        if (totalPages == CurrentPage) this.finished = true;
+        else this.finished = false;
     }
 
-    //private String IDBook;
     private int BookID = 0;
     private Uri BookImage;
     private String name;
     private String Author;
-    private String BookCategory;
     private int totalPages;
     private int currentPage;
-    private int readPages;
     private int leftPages;
     private boolean finished;
 
@@ -45,10 +46,6 @@ public class Book implements Serializable {
         return Author;
     }
 
-    public String getBookCategory() {
-        return BookCategory;
-    }
-
     public int getTotalPages() {
         return totalPages;
     }
@@ -57,14 +54,13 @@ public class Book implements Serializable {
         return currentPage;
     }
 
-    public int getReadPages() {
-        return readPages;
-    }
-
     public int getLeftPages() {
         return leftPages;
     }
 
+    public boolean getFinished() {
+        return finished;
+    }
 
     public static void setID(int id) {
         Book.ID = id;
@@ -86,20 +82,12 @@ public class Book implements Serializable {
         Author = author;
     }
 
-    public void setBookCategory(String bookCategory) {
-        BookCategory = bookCategory;
-    }
-
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
-    }
-
-    public void setReadPages(int readPages) {
-        this.readPages = readPages;
     }
 
     public void setLeftPages(int leftPages) {
