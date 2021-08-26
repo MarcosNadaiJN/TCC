@@ -1,5 +1,7 @@
 package com.app.tccv3;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class BookDAO {
         Book.setID(IDCounter);
         BookList.add(book);
         IDCounter++;
+        Log.i("livro criado", "" + book + IDCounter);
     }
 
     public void edit(Book book) {
