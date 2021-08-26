@@ -20,15 +20,13 @@ public class newBookActivity extends AppCompatActivity {
     ImageView BookImage;
     EditText BookName;
     EditText BookAuthor;
-    TextView BookCategory;
     TextView BookTotalPages;
     EditText BookTotalPages_Value;
     TextView Book_CurrentPage;
     EditText Book_CurrentPage_Value;
-    TextView Book_ReadPages;
-    TextView Book_ReadPages_Value;
     TextView Book_LeftPages;
     TextView Book_LeftPages_Value;
+    Uri BookCoverImage;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +34,9 @@ public class newBookActivity extends AppCompatActivity {
         InitializingFields();
         BookDAO DAO = new BookDAO();
         ConfigureCancelButton();
-        ConfigureAddButton(DAO,BookName);
+        ConfigureAddButton(DAO);
         ImagePicker();
+
     }
 
     private void ImagePicker() {
@@ -56,13 +55,10 @@ public class newBookActivity extends AppCompatActivity {
         BookImage = (ImageView) findViewById(R.id.BookImage);
         BookName = (EditText) findViewById(R.id.edittext_title_book);
         BookAuthor = (EditText) findViewById(R.id.edittext_author_book);
-        BookCategory = (TextView) findViewById(R.id.textview_book_category);
         BookTotalPages = (TextView) findViewById(R.id.textview_total_pages_book);
         BookTotalPages_Value = (EditText) findViewById(R.id.edittext_total_pages_book_value);
         Book_CurrentPage = (TextView) findViewById(R.id.textview_currentpage_book);
         Book_CurrentPage_Value = (EditText) findViewById(R.id.edittext_currentpage_book_value);
-        Book_ReadPages = (TextView) findViewById(R.id.textview_readpages_book);
-        Book_ReadPages_Value = (TextView) findViewById(R.id.textview_readpages_book_value);
         Book_LeftPages = (TextView) findViewById(R.id.textview_leftpages_book);
         Book_LeftPages_Value = (TextView) findViewById(R.id.textview_leftpages_book_value);
     }
@@ -77,12 +73,12 @@ public class newBookActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureAddButton(BookDAO DAO, EditText BookName) {
-        Button add = (Button) findViewById(R.id.button_save_book);
+    private void ConfigureAddButton(BookDAO DAO) {
+        Button add = (Button) findViewById(R.id.button_add_book);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Book newBook = createBook(BookName);
+                Book newBook = createBook();
                 save(newBook, DAO);
 
 
@@ -96,17 +92,14 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private Book createBook(EditText BookName) {
+    private Book createBook() {
         String bookName = BookName.getText().toString();
         String bookAuthor = BookAuthor.getText().toString();
-        String bookCategory = BookCategory.getText().toString();
-        int book_totalPages = Integer.parseInt(BookTotalPages_Value.toString());
-        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.toString());
-        int book_leftPages = book_totalPages-book_currentPage;
+        int book_totalPages = Integer.parseInt(BookTotalPages_Value.getText().toString());
+        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.getText().toString());
+        //int book_leftPages = book_totalPages - book_currentPage;
 
-        Book newBook = new Book(bookName, bookAuthor, bookCategory, book_totalPages,
-                book_currentPage, book_leftPages);
-        return newBook;
+        return new Book(bookName, bookAuthor, book_totalPages, book_currentPage);
     }
 
     //Sets PickedImage as BookImage
@@ -115,6 +108,7 @@ public class newBookActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         Uri uri = data.getData();
+        BookCoverImage = uri;
         BookImage.setImageURI(uri);
     }
 }
