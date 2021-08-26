@@ -24,4 +24,5 @@
     <string name="addbookfloatingbutton_description">AddBookFloatingButton</string>
     <string name="bookimage_description">BookImage</string>
     <string name="Save_Button">Salvar</string>
+    <string name="button_save">SALVAR</string>
 </resources>
