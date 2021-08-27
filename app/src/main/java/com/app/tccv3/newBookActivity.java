@@ -52,19 +52,19 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void InitializingFields() {
-        BookImage = (ImageView) findViewById(R.id.BookImage);
-        BookName = (EditText) findViewById(R.id.edittext_title_book);
-        BookAuthor = (EditText) findViewById(R.id.edittext_author_book);
-        BookTotalPages = (TextView) findViewById(R.id.textview_total_pages_book);
-        BookTotalPages_Value = (EditText) findViewById(R.id.edittext_total_pages_book_value);
-        Book_CurrentPage = (TextView) findViewById(R.id.textview_currentpage_book);
-        Book_CurrentPage_Value = (EditText) findViewById(R.id.edittext_currentpage_book_value);
-        Book_LeftPages = (TextView) findViewById(R.id.textview_leftpages_book);
-        Book_LeftPages_Value = (TextView) findViewById(R.id.textview_leftpages_book_value);
+        BookImage = findViewById(R.id.BookImage);
+        BookName = findViewById(R.id.edittext_title_book);
+        BookAuthor = findViewById(R.id.edittext_author_book);
+        BookTotalPages = findViewById(R.id.textview_total_pages_book);
+        BookTotalPages_Value = findViewById(R.id.edittext_total_pages_book_value);
+        Book_CurrentPage = findViewById(R.id.textview_currentpage_book);
+        Book_CurrentPage_Value = findViewById(R.id.edittext_currentpage_book_value);
+        Book_LeftPages = findViewById(R.id.textview_leftpages_book);
+        Book_LeftPages_Value = findViewById(R.id.textview_leftpages_book_value);
     }
 
     private void ConfigureCancelButton() {
-        Button cancel = (Button) findViewById(R.id.button_cancel_book);
+        Button cancel = findViewById(R.id.button_cancel_book);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO) {
-        Button add = (Button) findViewById(R.id.button_add_book);
+        Button add = findViewById(R.id.button_add_book);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
