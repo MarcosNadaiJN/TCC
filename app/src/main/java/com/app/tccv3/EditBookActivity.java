@@ -37,7 +37,11 @@ public class EditBookActivity extends AppCompatActivity {
         ConfigureCancelButton();
         ConfigureSaveButton(DAO, Book_Name);
         ImagePicker();
+        getBookInformation();
 
+    }
+
+    private void getBookInformation() {
         Intent data = getIntent();
         book = (Book) data.getSerializableExtra("book");
         Book_Image.setImageURI(book.getBookImage());
@@ -48,7 +52,6 @@ public class EditBookActivity extends AppCompatActivity {
         Book_LeftPages_Value.setText(String.valueOf(book.getLeftPages()));
         if (book.getFinished() == false) Book_is_finished_value.setText("Não");
         else Book_is_finished_value.setText("Sim");
-
     }
 
     private void ImagePicker() {
@@ -64,16 +67,16 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void InitializingFields() {
-        Book_Image = (ImageView) findViewById(R.id.BookImage_editor);
-        Book_Name = (EditText) findViewById(R.id.edittext_title_book_editor);
-        Book_Author = (EditText) findViewById(R.id.edittext_author_book_editor);
-        Book_TotalPages = (TextView) findViewById(R.id.textview_total_pages_book_editor);
-        Book_TotalPages_Value = (EditText) findViewById(R.id.edittext_total_pages_book_value_editor);
-        Book_CurrentPage = (TextView) findViewById(R.id.textview_currentpage_book_editor);
-        Book_CurrentPage_Value = (EditText) findViewById(R.id.edittext_currentpage_book_value_editor);
-        Book_LeftPages = (TextView) findViewById(R.id.textview_leftpages_book_editor);
-        Book_LeftPages_Value = (TextView) findViewById(R.id.textview_leftpages_book_value_editor);
-        Book_is_finished_value = (TextView) findViewById(R.id.textView_book_is_finished_value);
+        Book_Image = findViewById(R.id.BookImage_editor);
+        Book_Name = findViewById(R.id.edittext_title_book_editor);
+        Book_Author = findViewById(R.id.edittext_author_book_editor);
+        Book_TotalPages = findViewById(R.id.textview_total_pages_book_editor);
+        Book_TotalPages_Value = findViewById(R.id.edittext_total_pages_book_value_editor);
+        Book_CurrentPage = findViewById(R.id.textview_currentpage_book_editor);
+        Book_CurrentPage_Value = findViewById(R.id.edittext_currentpage_book_value_editor);
+        Book_LeftPages = findViewById(R.id.textview_leftpages_book_editor);
+        Book_LeftPages_Value = findViewById(R.id.textview_leftpages_book_value_editor);
+        Book_is_finished_value = findViewById(R.id.textView_book_is_finished_value);
     }
 
     private void ConfigureCancelButton() {
