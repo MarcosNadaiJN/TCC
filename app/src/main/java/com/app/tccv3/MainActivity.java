@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,27 +12,40 @@ import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private int TotalBooks;
-    private int FinishedBooks;
-    private int LeftBooks;
     private int TotalPages;
     private int ReadPages;
     private int LeftPages;
+    private int FinishedBooks;
+    private int LeftBooks;
 
     private FloatingActionButton newBook;
 
     private final BookDAO DAO = new BookDAO();
+
+    //----------------
+    List<Book> BookList;
+    Book CurrentBook;
+    int i = 0;
+    //----------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newBook = (FloatingActionButton) findViewById(R.id.floatingActionButton_newBook);
+        //----------------
+        TotalBooks = DAO.AllBooks().size();
+
+        //----------------
+
+
+        newBook = findViewById(R.id.floatingActionButton_newBook);
         newBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ConfigureBookList();
+
+
+        int ListSize = DAO.AllBooks().size();
+        BookList = DAO.AllBooks();
+        if(ListSize > 0){
+            while (i < ListSize) {
+                CurrentBook = BookList.get(i);
+                TotalPages += CurrentBook.getTotalPages();
+                Log.i("TAG", "onResume: " + TotalPages);
+                i++;
+            }
+        }
+
     }
 
     private void ConfigureBookList() {
