@@ -33,6 +33,28 @@ public class BookDAO {
         }
     }
 
+    public static List infoHeader() {
+        int TotalBooks = BookList.size();
+        int TotalPages = 0;
+        int ReadPages = 0;
+        int test = 0;
+
+        List<Integer> Values = new ArrayList<>();
+
+        int i = 0;
+        while (i < TotalBooks) {
+            Book atual = BookList.get(i);
+            TotalPages += atual.getTotalPages();
+            ReadPages += atual.getCurrentPage();
+            i++;
+        }
+        Values.add(TotalBooks);
+        Values.add(TotalPages);
+        Values.add(ReadPages);
+
+        return Values;
+    }
+
     public List<Book> AllBooks() {
         return new ArrayList<>(BookList);
     }
