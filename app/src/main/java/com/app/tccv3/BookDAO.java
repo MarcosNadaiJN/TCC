@@ -9,14 +9,22 @@ public class BookDAO {
 
     private final static List<Book> BookList = new ArrayList<>();
 
+    private final static List<Book> FinishedBookList = new ArrayList<>();
+
     private static int IDCounter = 1;
 
 
     public void save(Book book) {
-        Book.setID(IDCounter);
-        BookList.add(book);
-        IDCounter++;
-        Log.i("livro criado", "" + book + IDCounter);
+
+        if (book.getFinished() == true) {
+            Book.setID(IDCounter);
+            FinishedBookList.add(book);
+            IDCounter++;
+        } else {
+            Book.setID(IDCounter);
+            BookList.add(book);
+            IDCounter++;
+        }
     }
 
     public void edit(Book book) {
@@ -29,7 +37,11 @@ public class BookDAO {
         }
         if (foundedBook != null) {
             int BookPosition = BookList.indexOf(foundedBook);
-            BookList.set(BookPosition, book);
+            if (book.getFinished() == true) {
+                FinishedBookList.set(BookPosition, book);
+            } else {
+                BookList.set(BookPosition, book);
+            }
         }
     }
 
@@ -54,6 +66,29 @@ public class BookDAO {
 
         return Values;
     }
+
+//    public Integer attFinishedBooks() {
+//        int i = 0;
+//            while (i < BookList.size()) {
+//                Book atual = BookList.get(i);
+//                if (atual.getFinished() == true) {
+//                    FinishedBookList.add(atual);
+//                    if (BookList.size() > 0) {
+//                        BookList.remove(i);
+//                    }
+//                } else {
+//                    if (atual.getFinished() == false){
+//                        BookList.add(atual);
+//                        if (FinishedBookList.size() > 0) {
+//                            FinishedBookList.remove(i);
+//                        }
+//                    }
+//                }
+//                i++;
+//            }
+//        Integer TotalFinishedBooks = FinishedBookList.size();
+//        return TotalFinishedBooks;
+//    }
 
     public List<Book> AllBooks() {
         return new ArrayList<>(BookList);
