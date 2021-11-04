@@ -33,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final BookDAO DAO = new BookDAO();
 
-    //----------------
-    List<Book> BookList;
-    Book CurrentBook;
-    int i = 0;
-    //----------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +66,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         ConfigureBookList();
 
+//        AttFinishedBookList();
+
         ConfigureHeader();
 
     }
+
+//    private void AttFinishedBookList() {
+//        FinishedBooks_value = DAO.attFinishedBooks();
+//    }
 
     private void ConfigureHeader() {
 
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         TotalBooks_value = Values.get(0);
         TotalBooks.setText(Integer.toString(TotalBooks_value));
+
+//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
 
         TotalPages_value = Values.get(1);
         TotalPages.setText(Integer.toString(TotalPages_value));
