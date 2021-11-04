@@ -81,7 +81,6 @@ public class newBookActivity extends AppCompatActivity {
                 Book newBook = createBook();
                 save(newBook, DAO);
 
-
                 finish();
             }
         });
