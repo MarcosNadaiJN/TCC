@@ -5,14 +5,14 @@
     <string name="books_left">Restantes</string>
     <string name="textview_totalPages">Paginas Totais</string>
     <string name="left_pages">Restantes</string>
-    <string name="total_lists">Total das Listas</string>
+    <string name="total_lists">Livros</string>
     <string name="read_pages">Paginas Lidas</string>
     <string name="Add_list_title">De um Nome a sua Lista</string>
     <string name="add_button">Adicionar</string>
     <string name="cancel_button">Cancelar</string>
     <string name="book_title">Titulo:</string>
     <string name="book_author">Autor:</string>
-    <string name="current_book_list">Lista:</string>
+    <string name="current_book_list">Categoria:</string>
     <string name="pages_number">Total de Paginas:</string>
     <string name="current_page">Pagina Atual:</string>
     <string name="read_pages_bookmenu">Paginas Lidas:</string>
@@ -23,4 +23,6 @@
     <string name="progress_percentage_defaultvalue">0%</string>
     <string name="addbookfloatingbutton_description">AddBookFloatingButton</string>
     <string name="bookimage_description">BookImage</string>
+    <string name="Save_Button">Salvar</string>
+    <string name="button_save">SALVAR</string>
 </resources>
