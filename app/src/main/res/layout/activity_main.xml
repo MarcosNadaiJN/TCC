@@ -266,7 +266,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_bottomheader" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton_newList"
+        android:id="@+id/floatingActionButton_newBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
