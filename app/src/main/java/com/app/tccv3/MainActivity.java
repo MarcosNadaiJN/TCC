@@ -1,12 +1,16 @@
 package com.app.tccv3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton newBook;
 
+    private Button currentBooks;
+    private Button finishedBooks;
+
     private final BookDAO DAO = new BookDAO();
 
 
@@ -39,16 +46,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ConfigNewBookButton();
+        ConfigcurrentBooksButton();
+        ConfigfinishedBooksButton();
+        ConfigTextViews();
+        ConfigToolBar();
 
 
+    }
+
+
+    private void ConfigToolBar() {
+        Toolbar toolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    private void ConfigTextViews() {
         TotalBooks = findViewById(R.id.textview_totalbooksValue_booklistscreen);
         TotalPages = findViewById(R.id.textView_totalpagesvalue_booklistscreen);
         ReadPages = findViewById(R.id.textView_readpagesvalue_booklistscreen);
         LeftPages = findViewById(R.id.textView_leaftpagesvalue_booklistscreen);
         FinishedBooks = findViewById(R.id.textview_totalbooksValue2_booklistscreen);
         LeftBooks = findViewById(R.id.textview_totalbooksValue3_booklistscreen);
+    }
 
+    private void ConfigcurrentBooksButton() {
+        currentBooks = findViewById(R.id.button_current);
+        currentBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+    }
+
+    private void ConfigfinishedBooksButton() {
+        finishedBooks = findViewById(R.id.button_finished);
+        finishedBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void ConfigNewBookButton() {
