@@ -5,8 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
         currentBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ConfigureHeaderCurrentBooks();
+                ConfigureCurrentBookList();
             }
         });
     }
@@ -85,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         finishedBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ConfigureHeaderFinishedBooks();
+                ConfigureFinishedBookList();
             }
         });
     }
@@ -103,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ConfigureBookList();
+        ConfigureCurrentBookList();
 
 //        AttFinishedBookList();
 
-        ConfigureHeader();
+        ConfigureHeaderCurrentBooks();
 
     }
 
@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
 //        FinishedBooks_value = DAO.attFinishedBooks();
 //    }
 
-    private void ConfigureHeader() {
+    private void ConfigureHeaderCurrentBooks() {
 
-        List<Integer> Values = DAO.infoHeader();
+        List<Integer> Values = DAO.infoHeaderCurrentBooks();
 
         TotalBooks_value = Values.get(0);
         TotalBooks.setText(Integer.toString(TotalBooks_value));
@@ -133,12 +133,50 @@ public class MainActivity extends AppCompatActivity {
         LeftPages_value = TotalPages_value - ReadPages_value;
         LeftPages.setText(Integer.toString(LeftPages_value));
 
+    }
+
+    private void ConfigureHeaderFinishedBooks() {
+
+        List<Integer> Values = DAO.infoHeaderFinishedBooks();
+
+        TotalBooks_value = Values.get(0);
+        TotalBooks.setText(Integer.toString(TotalBooks_value));
+
+//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
+
+        TotalPages_value = Values.get(1);
+        TotalPages.setText(Integer.toString(TotalPages_value));
+
+        ReadPages_value  = Values.get(2);
+        ReadPages.setText(Integer.toString(ReadPages_value));
+
+        LeftPages_value = TotalPages_value - ReadPages_value;
+        LeftPages.setText(Integer.toString(LeftPages_value));
 
     }
 
-    private void ConfigureBookList() {
+    private void ConfigureCurrentBookList() {
         ListView BookListView = findViewById(R.id.listview_listofbooks);
-        final List<Book> bookLists = DAO.AllBooks();
+        final List<Book> bookLists = DAO.AllCurrentBooks();
+        BookListView.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                bookLists));
+        BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book chosenBook = bookLists.get(position);
+                Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
+                OpenBookEditor.putExtra("book", chosenBook);
+                startActivity(OpenBookEditor);
+
+            }
+        });
+    }
+
+    private void ConfigureFinishedBookList() {
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
+        final List<Book> bookLists = DAO.AllFinishedBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,

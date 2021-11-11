@@ -45,7 +45,7 @@ public class BookDAO {
         }
     }
 
-    public static List infoHeader() {
+    public static List infoHeaderCurrentBooks() {
         int TotalBooks = BookList.size();
         int TotalPages = 0;
         int ReadPages = 0;
@@ -66,6 +66,30 @@ public class BookDAO {
 
         return Values;
     }
+
+    public static List infoHeaderFinishedBooks() {
+        int TotalBooks = FinishedBookList.size();
+        int TotalPages = 0;
+        int ReadPages = 0;
+        int test = 0;
+
+        List<Integer> Values = new ArrayList<>();
+
+        int i = 0;
+        while (i < TotalBooks) {
+            Book atual = FinishedBookList.get(i);
+            TotalPages += atual.getTotalPages();
+            ReadPages += atual.getCurrentPage();
+            i++;
+        }
+        Values.add(TotalBooks);
+        Values.add(TotalPages);
+        Values.add(ReadPages);
+
+        return Values;
+    }
+
+
 
 //    public Integer attFinishedBooks() {
 //        int i = 0;
@@ -90,8 +114,12 @@ public class BookDAO {
 //        return TotalFinishedBooks;
 //    }
 
-    public List<Book> AllBooks() {
+    public List<Book> AllCurrentBooks() {
         return new ArrayList<>(BookList);
+    }
+
+    public List<Book> AllFinishedBooks() {
+        return new ArrayList<>(FinishedBookList);
     }
 
 }
