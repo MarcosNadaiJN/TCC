@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-    private static int ID;
+
 
     Book(String name, String Author, int totalPages, int CurrentPage){
 //        this.BookImage = Image;
@@ -18,9 +18,10 @@ public class Book implements Serializable {
         this.leftPages = totalPages - CurrentPage;
         if (totalPages == CurrentPage) this.finished = true;
         else this.finished = false;
+        this.ID = BookDAO.IDCounter;
     }
 
-    private int BookID = 0;
+    private int ID;
     private Uri BookImage;
     private String name;
     private String Author;
@@ -30,7 +31,7 @@ public class Book implements Serializable {
     private boolean finished;
 
 
-    public static int getID() {
+    public int getID() {
         return ID;
     }
 
@@ -62,12 +63,8 @@ public class Book implements Serializable {
         return finished;
     }
 
-    public static void setID(int id) {
-        Book.ID = id;
-    }
-
-    public void setBookID(int bookID) {
-        BookID = bookID;
+    public void setID(int id) {
+        this.ID = id;
     }
 
     public void setBookImage(Uri bookImage) {

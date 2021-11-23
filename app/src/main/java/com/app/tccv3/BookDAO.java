@@ -1,7 +1,5 @@
 package com.app.tccv3;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,39 +9,67 @@ public class BookDAO {
 
     private final static List<Book> FinishedBookList = new ArrayList<>();
 
-    private static int IDCounter = 1;
+    public static int IDCounter = 1;
 
 
     public void save(Book book) {
 
         if (book.getFinished() == true) {
-            Book.setID(IDCounter);
+            book.setID(IDCounter);
             FinishedBookList.add(book);
             IDCounter++;
         } else {
-            Book.setID(IDCounter);
+            book.setID(IDCounter);
             BookList.add(book);
+            System.out.println(book.getID());
             IDCounter++;
         }
     }
 
     public void edit(Book book) {
-        Book foundedBook = null;
+        Book chosenbook = null;
+        boolean willremove = false;
+        int positionOfBookForRemoval = 0;
         for (Book a :
                 BookList) {
             if (a.getID() == book.getID()) {
-                foundedBook = a;
+                chosenbook = a;
+                if (book.getFinished() == true) {
+                    FinishedBookList.add(book);
+                    positionOfBookForRemoval = BookList.indexOf(chosenbook);
+                    willremove = true;
+                } else {
+                    int position = BookList.indexOf(chosenbook);
+                    BookList.set(position, book);
+                }
             }
         }
-        if (foundedBook != null) {
-            int BookPosition = BookList.indexOf(foundedBook);
-            if (book.getFinished() == true) {
-                FinishedBookList.set(BookPosition, book);
-            } else {
-                BookList.set(BookPosition, book);
+        if (willremove == true) {
+            BookList.remove(positionOfBookForRemoval);
+            willremove = false;
+        }
+
+        for (Book b :
+                FinishedBookList) {
+            if (b.getID() == book.getID()) {
+                chosenbook = b;
+                if (book.getFinished() == true) {
+                    int position = FinishedBookList.indexOf(chosenbook);
+                    FinishedBookList.set(position, book);
+                } else {
+                    BookList.add(book);
+                    positionOfBookForRemoval = FinishedBookList.indexOf(chosenbook);
+                    willremove = true;
+                }
             }
         }
-    }
+        if (willremove == true) {
+            FinishedBookList.remove(positionOfBookForRemoval);
+            willremove = false;
+        }
+
+        }
+
 
     public static List infoHeaderCurrentBooks() {
         int TotalBooks = BookList.size();
@@ -88,31 +114,6 @@ public class BookDAO {
 
         return Values;
     }
-
-
-
-//    public Integer attFinishedBooks() {
-//        int i = 0;
-//            while (i < BookList.size()) {
-//                Book atual = BookList.get(i);
-//                if (atual.getFinished() == true) {
-//                    FinishedBookList.add(atual);
-//                    if (BookList.size() > 0) {
-//                        BookList.remove(i);
-//                    }
-//                } else {
-//                    if (atual.getFinished() == false){
-//                        BookList.add(atual);
-//                        if (FinishedBookList.size() > 0) {
-//                            FinishedBookList.remove(i);
-//                        }
-//                    }
-//                }
-//                i++;
-//            }
-//        Integer TotalFinishedBooks = FinishedBookList.size();
-//        return TotalFinishedBooks;
-//    }
 
     public List<Book> AllCurrentBooks() {
         return new ArrayList<>(BookList);

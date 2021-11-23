@@ -104,16 +104,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ConfigureCurrentBookList();
-
-//        AttFinishedBookList();
-
         ConfigureHeaderCurrentBooks();
 
     }
-
-//    private void AttFinishedBookList() {
-//        FinishedBooks_value = DAO.attFinishedBooks();
-//    }
 
     private void ConfigureHeaderCurrentBooks() {
 
