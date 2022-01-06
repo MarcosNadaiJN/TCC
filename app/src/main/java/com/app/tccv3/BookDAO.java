@@ -70,6 +70,35 @@ public class BookDAO {
 
         }
 
+    public void delete(Integer ID, Integer flag) {
+        Book chosenBook = null;
+        boolean willDelete = false;
+        if (flag == 1){
+            for (Book a : BookList) {
+                if (a.getID() == ID){
+                    chosenBook = a;
+                    willDelete = true;
+                }
+            }
+            if (willDelete == true) {
+                BookList.remove(chosenBook);
+                willDelete = false;
+            }
+        } else {
+            for (Book a : FinishedBookList) {
+                if (a.getID() == ID){
+                    chosenBook = a;
+                    willDelete = true;
+                }
+            }
+            if (willDelete == true) {
+                FinishedBookList.remove(chosenBook);
+                willDelete = false;
+            }
+        }
+
+    }
+
 
     public static List infoHeaderCurrentBooks() {
         int TotalBooks = BookList.size();
