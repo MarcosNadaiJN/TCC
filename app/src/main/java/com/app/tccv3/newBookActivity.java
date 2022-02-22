@@ -32,9 +32,12 @@ public class newBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_book);
         InitializingFields();
+
         BookDAO DAO = new BookDAO();
+        contextMenuSynchronizer CMS = new contextMenuSynchronizer();
+
         ConfigureCancelButton();
-        ConfigureAddButton(DAO);
+        ConfigureAddButton(DAO, CMS);
         ImagePicker();
 
     }
@@ -73,13 +76,14 @@ public class newBookActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureAddButton(BookDAO DAO) {
+    private void ConfigureAddButton(BookDAO DAO, contextMenuSynchronizer CMS) {
         Button add = findViewById(R.id.button_add_book_wishlist);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Book newBook = createBook();
                 save(newBook, DAO);
+                CMS.addNewBook(newBook);
 
                 finish();
             }
@@ -87,6 +91,12 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void save(Book List, BookDAO DAO) {
+//        Intent data = getIntent();
+//        Bundle extras = data.getExtras();
+//        int listViewSize = extras.getInt("size");
+//        System.out.println(listViewSize);
+
+
         DAO.save(List);
     }
 

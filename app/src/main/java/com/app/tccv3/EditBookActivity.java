@@ -29,6 +29,8 @@ public class EditBookActivity extends AppCompatActivity {
 
     Book book;
 
+    contextMenuSynchronizer CMS = new contextMenuSynchronizer();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_editor);
@@ -94,9 +96,10 @@ public class EditBookActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AttBook();
                 DAO.edit(book);
+
+
                 finish();
             }
         });

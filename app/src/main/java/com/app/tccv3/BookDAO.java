@@ -87,8 +87,8 @@ public class BookDAO {
         } else {
             for (Book a : FinishedBookList) {
                 if (a.getID() == ID){
-                    chosenBook = a;
                     willDelete = true;
+                    chosenBook = a;
                 }
             }
             if (willDelete == true) {

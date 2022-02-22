@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     private final BookDAO DAO = new BookDAO();
 
+    private final contextMenuSynchronizer CMS = new contextMenuSynchronizer();
+
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
+
+
 
 
     @Override
@@ -59,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
         ConfigToolBar();
         ConfigContextMenu();
 
-
-
     }
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
@@ -74,12 +77,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.option_delete:
-//                Toast.makeText(this,"Deletar", Toast.LENGTH_SHORT).show();
                 AdapterView.AdapterContextMenuInfo info =
                         (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 Integer listPosition = info.position;
-                Toast.makeText(this,listPosition.toString(), Toast.LENGTH_SHORT).show();
-//                DAO.delete(listPosition+1, flagBookList);
+//                Toast.makeText(this,listPosition.toString(), Toast.LENGTH_SHORT).show();
+                DAO.delete(CMS.removeBook(listPosition, flagBookList), flagBookList);
                 if (flagBookList == 1) {
                     ConfigureCurrentBookList();
                     ConfigureHeaderCurrentBooks();
@@ -163,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void ConfigureHeaderCurrentBooks() {
 
         List<Integer> Values = DAO.infoHeaderCurrentBooks();
@@ -245,6 +248,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void openNewBookActivity() {
         Intent intent = new Intent(this, newBookActivity.class);
+//        int listViewSize = BookListView.getAdapter().getCount();
+//        intent.putExtra("size", listViewSize);
         startActivity(intent);
     }
 
