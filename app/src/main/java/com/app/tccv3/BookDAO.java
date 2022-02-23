@@ -11,6 +11,15 @@ public class BookDAO {
 
     public static int IDCounter = 1;
 
+    public void initDadosTest () {
+
+        Book book1 = new Book("teste nf", "aut", 100, 10);
+        Book book2 = new Book("teste f", "aut 2", 50, 50);
+
+        save(book1);
+        save(book2);
+    }
+
 
     public void save(Book book) {
 

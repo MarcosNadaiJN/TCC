@@ -34,8 +34,10 @@ public class contextMenuSynchronizer {
 //        }
 
         if (isFinished) {
+
             FinishedBooksMap.put(DAO.AllFinishedBooks().size(), bookID);
         } else {
+
             CurrentBooksMap.put(DAO.AllCurrentBooks().size(), bookID);
         }
 
