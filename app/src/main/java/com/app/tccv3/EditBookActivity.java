@@ -28,22 +28,24 @@ public class EditBookActivity extends AppCompatActivity {
     TextView Book_is_finished_value;
 
     Book book;
-
-    contextMenuSynchronizer CMS = new contextMenuSynchronizer();
+    Integer flagBookList;
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_editor);
         InitializingFields();
         BookDAO DAO = new BookDAO();
         ConfigureCancelButton();
-        ConfigureSaveButton(DAO, Book_Name);
+        ConfigureSaveButton(DAO);
+        ConfigureDeleteButton(DAO);
         ImagePicker();
         getBookInformation();
 
     }
 
     private void getBookInformation() {
+
         Intent data = getIntent();
         book = (Book) data.getSerializableExtra("book");
         Book_Image.setImageURI(book.getBookImage());
@@ -54,12 +56,17 @@ public class EditBookActivity extends AppCompatActivity {
         Book_LeftPages_Value.setText(String.valueOf(book.getLeftPages()));
         if (book.getFinished() == false) Book_is_finished_value.setText("Não");
         else Book_is_finished_value.setText("Sim");
+
+        Intent flag = getIntent();
+        flagBookList = (Integer) flag.getSerializableExtra("flag");
     }
 
     private void ImagePicker() {
+
         Book_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ImagePicker.Companion.with(EditBookActivity.this)
                         //.galleryOnly()
                         .crop()
@@ -69,6 +76,7 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void InitializingFields() {
+
         Book_Image = findViewById(R.id.BookImage_editor);
         Book_Name = findViewById(R.id.edittext_title_book_editor);
         Book_Author = findViewById(R.id.edittext_author_book_editor);
@@ -82,36 +90,47 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureCancelButton() {
+
         Button cancel = (Button) findViewById(R.id.button_cancel_book_wishlist);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });
     }
 
-    private void ConfigureSaveButton(BookDAO DAO, EditText BookName) {
-        Button add = (Button) findViewById(R.id.button_save_book);
-        add.setOnClickListener(new View.OnClickListener() {
+    private void ConfigureSaveButton(BookDAO DAO) {
+
+        Button delete = (Button) findViewById(R.id.button_save_book);
+        delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AttBook();
                 DAO.edit(book);
 
+                finish();
+            }
+        });
+    }
+
+    private void ConfigureDeleteButton(BookDAO DAO) {
+
+        Button add = (Button) findViewById(R.id.button_delete);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DAO.delete(book.getID(), flagBookList);
 
                 finish();
             }
         });
     }
 
-//    private void save(Book List, BookDAO DAO) {
-//        DAO.save(List);
-//    }
-
     private void AttBook() {
-//        Book newBook = new Book(bookName);
-//        return newBook;
 
         String bookName = Book_Name.getText().toString();
         String bookAuthor = Book_Author.getText().toString();
@@ -128,6 +147,11 @@ public class EditBookActivity extends AppCompatActivity {
         book.setLeftPages(book_LeftPages_value);
         book.setLeftPages(book_LeftPages_value);
         book.setFinished(book_TotalPages_value == book_CurrentPages_value);
+    }
+
+    private void DeleteBook() {
+
+
     }
 
     //Sets PickedImage as BookImage

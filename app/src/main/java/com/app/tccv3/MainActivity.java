@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final BookDAO DAO = new BookDAO();
 
-    private final contextMenuSynchronizer CMS = new contextMenuSynchronizer();
-
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
 
 
@@ -52,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ConfigNewBookButton();
@@ -61,52 +59,21 @@ public class MainActivity extends AppCompatActivity {
 //        ConfigWishListButton();
         ConfigTextViews();
         ConfigToolBar();
-        ConfigContextMenu();
+
+        DAO.initDadosTest();
 
     }
 
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.floating_menu, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.option_delete:
-                AdapterView.AdapterContextMenuInfo info =
-                        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                Integer listPosition = info.position;
-//                Toast.makeText(this,listPosition.toString(), Toast.LENGTH_SHORT).show();
-                DAO.delete(CMS.removeBook(listPosition, flagBookList), flagBookList);
-                if (flagBookList == 1) {
-                    ConfigureCurrentBookList();
-                    ConfigureHeaderCurrentBooks();
-                } else {
-                    ConfigureHeaderFinishedBooks();
-                    ConfigureFinishedBookList();
-                }
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    private void ConfigContextMenu() {
-        ListView listView = findViewById(R.id.listview_listofbooks_wishlist);
-        registerForContextMenu(listView);
-    }
 
     private void ConfigToolBar() {
+
         Toolbar toolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void ConfigTextViews() {
+
         TotalBooks = findViewById(R.id.textview_totalbooksValue_booklistscreenWishList);
         TotalPages = findViewById(R.id.textView_totalpagesvalue_booklistscreen);
         ReadPages = findViewById(R.id.textView_readpagesvalue_booklistscreen);
@@ -126,10 +93,12 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private void ConfigcurrentBooksButton() {
+
         currentBooks = findViewById(R.id.button_current_wishlist);
         currentBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ConfigureHeaderCurrentBooks();
                 ConfigureCurrentBookList();
             }
@@ -137,10 +106,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ConfigfinishedBooksButton() {
+
         finishedBooks = findViewById(R.id.button_finished_wishlist);
         finishedBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ConfigureHeaderFinishedBooks();
                 ConfigureFinishedBookList();
             }
@@ -148,8 +119,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ConfigNewBookButton() {
+
         newBook = findViewById(R.id.floatingActionButton_newBook_wishlist);
         newBook.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 openNewBookActivity();
@@ -159,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
         ConfigureCurrentBookList();
         ConfigureHeaderCurrentBooks();
@@ -220,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 Book chosenBook = bookLists.get(position);
                 Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
                 OpenBookEditor.putExtra("book", chosenBook);
+                OpenBookEditor.putExtra("flag", flagBookList);
                 startActivity(OpenBookEditor);
 
             }
@@ -240,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                 Book chosenBook = bookLists.get(position);
                 Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
                 OpenBookEditor.putExtra("book", chosenBook);
+                OpenBookEditor.putExtra("flag", flagBookList);
                 startActivity(OpenBookEditor);
 
             }
@@ -247,14 +223,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openNewBookActivity() {
-        Intent intent = new Intent(this, newBookActivity.class);
-//        int listViewSize = BookListView.getAdapter().getCount();
-//        intent.putExtra("size", listViewSize);
+
+        Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
 
-//    public void openWishListActivity() {
-//        Intent intent = new Intent(this, WishList.class);
-//        startActivity(intent);
-//    }
 }

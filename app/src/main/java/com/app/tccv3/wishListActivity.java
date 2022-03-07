@@ -50,7 +50,7 @@ public class wishListActivity extends AppCompatActivity {
     }
 
     private void openNewBookActivity(){
-        Intent intent = new Intent(this, newBookActivity.class);
+        Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
 }

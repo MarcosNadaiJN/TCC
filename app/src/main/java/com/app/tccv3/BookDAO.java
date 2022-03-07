@@ -30,7 +30,6 @@ public class BookDAO {
         } else {
             book.setID(IDCounter);
             BookList.add(book);
-            System.out.println(book.getID());
             IDCounter++;
         }
     }

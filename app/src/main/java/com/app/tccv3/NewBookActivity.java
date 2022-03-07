@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
-public class newBookActivity extends AppCompatActivity {
+public class NewBookActivity extends AppCompatActivity {
 
     ImageView BookImage;
     EditText BookName;
@@ -34,10 +34,9 @@ public class newBookActivity extends AppCompatActivity {
         InitializingFields();
 
         BookDAO DAO = new BookDAO();
-        contextMenuSynchronizer CMS = new contextMenuSynchronizer();
 
         ConfigureCancelButton();
-        ConfigureAddButton(DAO, CMS);
+        ConfigureAddButton(DAO);
         ImagePicker();
 
     }
@@ -46,7 +45,7 @@ public class newBookActivity extends AppCompatActivity {
         BookImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.Companion.with(newBookActivity.this)
+                ImagePicker.Companion.with(NewBookActivity.this)
                         //.galleryOnly()
                         .crop()
                         .start();
@@ -76,14 +75,13 @@ public class newBookActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureAddButton(BookDAO DAO, contextMenuSynchronizer CMS) {
+    private void ConfigureAddButton(BookDAO DAO) {
         Button add = findViewById(R.id.button_add_book_wishlist);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Book newBook = createBook();
                 save(newBook, DAO);
-                CMS.addNewBook(newBook);
 
                 finish();
             }
