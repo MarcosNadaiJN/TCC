@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
-public class newBookActivity extends AppCompatActivity {
+public class NewBookActivity extends AppCompatActivity {
 
     ImageView BookImage;
     EditText BookName;
@@ -32,7 +32,9 @@ public class newBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_book);
         InitializingFields();
+
         BookDAO DAO = new BookDAO();
+
         ConfigureCancelButton();
         ConfigureAddButton(DAO);
         ImagePicker();
@@ -43,7 +45,7 @@ public class newBookActivity extends AppCompatActivity {
         BookImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.Companion.with(newBookActivity.this)
+                ImagePicker.Companion.with(NewBookActivity.this)
                         //.galleryOnly()
                         .crop()
                         .start();
@@ -52,11 +54,11 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void InitializingFields() {
-        BookImage = findViewById(R.id.BookImage);
-        BookName = findViewById(R.id.edittext_title_book);
-        BookAuthor = findViewById(R.id.edittext_author_book);
-        BookTotalPages = findViewById(R.id.textview_total_pages_book);
-        BookTotalPages_Value = findViewById(R.id.edittext_total_pages_book_value);
+        BookImage = findViewById(R.id.BookImage_wishlist);
+        BookName = findViewById(R.id.edittext_title_book_wishlist);
+        BookAuthor = findViewById(R.id.edittext_author_book_wishlist);
+        BookTotalPages = findViewById(R.id.textview_total_pages_book_wishlist);
+        BookTotalPages_Value = findViewById(R.id.edittext_total_pages_book_value_wishlist);
         Book_CurrentPage = findViewById(R.id.textview_currentpage_book);
         Book_CurrentPage_Value = findViewById(R.id.edittext_currentpage_book_value);
         Book_LeftPages = findViewById(R.id.textview_leftpages_book);
@@ -64,7 +66,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureCancelButton() {
-        Button cancel = findViewById(R.id.button_cancel_book);
+        Button cancel = findViewById(R.id.button_cancel_book_wishlist);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +76,7 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO) {
-        Button add = findViewById(R.id.button_add_book);
+        Button add = findViewById(R.id.button_add_book_wishlist);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +89,12 @@ public class newBookActivity extends AppCompatActivity {
     }
 
     private void save(Book List, BookDAO DAO) {
+//        Intent data = getIntent();
+//        Bundle extras = data.getExtras();
+//        int listViewSize = extras.getInt("size");
+//        System.out.println(listViewSize);
+
+
         DAO.save(List);
     }
 
