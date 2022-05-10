@@ -126,25 +126,6 @@
 
                 />
 
-            <Button
-                android:id="@+id/button_finished_wishlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Finalizados"
-                app:layout_constraintBottom_toBottomOf="@+id/mainToolbar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/button_current_wishlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atuais"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline5"
                 android:layout_width="wrap_content"
@@ -152,16 +133,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="205dp" />
 
-            <Button
-                android:id="@+id/button_wishlist_wishlist"
-                android:layout_width="56dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="16dp"
-                app:icon="@drawable/ic_menu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_current_wishlist"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

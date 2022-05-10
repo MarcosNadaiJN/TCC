@@ -1,13 +1,10 @@
 package com.app.tccv3;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //        ConfigWishListButton();
         ConfigTextViews();
         ConfigToolBar();
+        ConfigWishListButton();
 
         DAO.initDadosTest();
 
@@ -82,19 +80,26 @@ public class MainActivity extends AppCompatActivity {
         LeftBooks = findViewById(R.id.textview_totalbooksValue3_booklistscreen);
     }
 
-//    private void ConfigWishListButton(){
-//        WishList = findViewById(R.id.button_wishlist_wishlist);
-//        WishList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openWishListActivity();
-//            }
-//        });
-//    }
+    private void ConfigWishListButton(){
+        WishList = findViewById(R.id.button_wishlist);
+        WishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWishListActivity();
+            }
+        });
+    }
+
+    public void openWishListActivity() {
+
+        Intent intent = new Intent(this, WishListActivity.class);
+        startActivity(intent);
+    }
+
 
     private void ConfigcurrentBooksButton() {
 
-        currentBooks = findViewById(R.id.button_current_wishlist);
+        currentBooks = findViewById(R.id.button_current_bookList);
         currentBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigfinishedBooksButton() {
 
-        finishedBooks = findViewById(R.id.button_finished_wishlist);
+        finishedBooks = findViewById(R.id.button_finished_bookList);
         finishedBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigNewBookButton() {
 
-        newBook = findViewById(R.id.floatingActionButton_newBook_wishlist);
+        newBook = findViewById(R.id.floatingActionButton_newBook);
         newBook.setOnClickListener(new View.OnClickListener() {
 
             @Override

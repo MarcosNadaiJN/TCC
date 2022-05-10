@@ -15,22 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
-public class NewBookActivity extends AppCompatActivity {
+public class NewBookWishListActivity extends AppCompatActivity {
 
     ImageView BookImage;
     EditText BookName;
     EditText BookAuthor;
     TextView BookTotalPages;
     EditText BookTotalPages_Value;
-    TextView Book_CurrentPage;
-    EditText Book_CurrentPage_Value;
-    TextView Book_LeftPages;
-    TextView Book_LeftPages_Value;
     Uri BookCoverImage;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_book);
+        setContentView(R.layout.new_book_wishlist);
         InitializingFields();
 
         BookDAO DAO = new BookDAO();
@@ -45,7 +41,7 @@ public class NewBookActivity extends AppCompatActivity {
         BookImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.Companion.with(NewBookActivity.this)
+                ImagePicker.Companion.with(NewBookWishListActivity.this)
                         //.galleryOnly()
                         .crop()
                         .start();
@@ -54,19 +50,15 @@ public class NewBookActivity extends AppCompatActivity {
     }
 
     private void InitializingFields() {
-        BookImage = findViewById(R.id.BookImage);
-        BookName = findViewById(R.id.edittext_title_book);
-        BookAuthor = findViewById(R.id.edittext_author_book);
-        BookTotalPages = findViewById(R.id.textview_total_pages_book);
-        BookTotalPages_Value = findViewById(R.id.edittext_total_pages_book_value);
-        Book_CurrentPage = findViewById(R.id.textview_currentpage_book);
-        Book_CurrentPage_Value = findViewById(R.id.edittext_currentpage_book_value);
-        Book_LeftPages = findViewById(R.id.textview_leftpages_book);
-        Book_LeftPages_Value = findViewById(R.id.textview_leftpages_book_value);
+        BookImage = findViewById(R.id.BookImage_WishList);
+        BookName = findViewById(R.id.edittext_title_book_WishList);
+        BookAuthor = findViewById(R.id.edittext_author_book_WishList);
+        BookTotalPages = findViewById(R.id.textview_total_pages_book_WishList);
+        BookTotalPages_Value = findViewById(R.id.edittext_total_pages_book_value_wishList);
     }
 
     private void ConfigureCancelButton() {
-        Button cancel = findViewById(R.id.button_cancel_book);
+        Button cancel = findViewById(R.id.button_cancel_book_WishList);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,12 +68,12 @@ public class NewBookActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO) {
-        Button add = findViewById(R.id.button_add_book);
+        Button add = findViewById(R.id.button_add_book_WishList);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Book newBook = createBook();
-                save(newBook, DAO);
+//                Book newBook = createBook();
+//                save(newBook, DAO);
 
                 finish();
             }
@@ -98,15 +90,14 @@ public class NewBookActivity extends AppCompatActivity {
         DAO.save(List);
     }
 
-    @NonNull
-    private Book createBook() {
+    private void createBook() {
         String bookName = BookName.getText().toString();
         String bookAuthor = BookAuthor.getText().toString();
         int book_totalPages = Integer.parseInt(BookTotalPages_Value.getText().toString());
-        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.getText().toString());
+//        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.getText().toString());
         //int book_leftPages = book_totalPages - book_currentPage;
 
-        return new Book(bookName, bookAuthor, book_totalPages, book_currentPage);
+//        return new Book(bookName, bookAuthor, book_totalPages, book_currentPage);
     }
 
     //Sets PickedImage as BookImage

@@ -9,6 +9,8 @@ public class BookDAO {
 
     private final static List<Book> FinishedBookList = new ArrayList<>();
 
+    private final static List<Book> WishList = new ArrayList<>();
+
     public static int IDCounter = 1;
 
     public void initDadosTest () {
