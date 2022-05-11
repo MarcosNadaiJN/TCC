@@ -9,7 +9,7 @@ public class BookDAO {
 
     private final static List<Book> FinishedBookList = new ArrayList<>();
 
-    private final static List<Book> WishList = new ArrayList<>();
+    private final static List<BookWishList> WishList = new ArrayList<>();
 
     public static int IDCounter = 1;
 
@@ -34,6 +34,12 @@ public class BookDAO {
             BookList.add(book);
             IDCounter++;
         }
+    }
+
+    public void save(BookWishList bookWishList) {
+        bookWishList.setID(IDCounter);
+        WishList.add(bookWishList);
+        IDCounter++;
     }
 
     public void edit(Book book) {
@@ -80,6 +86,10 @@ public class BookDAO {
 
         }
 
+        public void edit(BookWishList book) {
+
+        }
+
     public void delete(Integer ID, Integer flag) {
         Book chosenBook = null;
         boolean willDelete = false;
@@ -107,6 +117,11 @@ public class BookDAO {
             }
         }
 
+    }
+
+    public void delete(Integer ID) {
+        BookWishList chosenBook = null;
+        WishList.removeIf(a -> a.getID() == ID);
     }
 
 
@@ -160,6 +175,10 @@ public class BookDAO {
 
     public List<Book> AllFinishedBooks() {
         return new ArrayList<>(FinishedBookList);
+    }
+
+    public List<BookWishList> AllWishListBooks(){
+        return new ArrayList<>(WishList);
     }
 
 }

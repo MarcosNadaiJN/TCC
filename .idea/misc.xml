@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4711917916337806" />
         <entry key="app/src/main/res/layout/activity_wishlist.xml" value="0.33" />
         <entry key="app/src/main/res/layout/book_editor.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/book_wishlist_editor.xml" value="0.5" />
         <entry key="app/src/main/res/layout/booklist.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/new_book.xml" value="0.33" />
         <entry key="app/src/main/res/layout/new_book_wishlist.xml" value="0.33" />

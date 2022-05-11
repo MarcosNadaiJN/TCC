@@ -28,6 +28,8 @@ public class NewBookActivity extends AppCompatActivity {
     TextView Book_LeftPages_Value;
     Uri BookCoverImage;
 
+    Book book;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_book);
@@ -38,7 +40,22 @@ public class NewBookActivity extends AppCompatActivity {
         ConfigureCancelButton();
         ConfigureAddButton(DAO);
         ImagePicker();
+        getBookInformation();
 
+    }
+
+    private void getBookInformation() {
+
+        Intent data = getIntent();
+        book = (Book) data.getSerializableExtra("book");
+        if (data.getSerializableExtra("book") != null) {
+            BookImage.setImageURI(book.getBookImage());
+            BookName.setText(book.getName());
+            BookAuthor.setText(book.getAuthor());
+            BookTotalPages_Value.setText(String.valueOf(book.getTotalPages()));
+        }
+//        Intent flag = getIntent();
+//        flagBookList = (Integer) flag.getSerializableExtra("flag");
     }
 
     private void ImagePicker() {

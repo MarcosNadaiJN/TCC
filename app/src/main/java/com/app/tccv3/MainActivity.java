@@ -50,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ConfigNewBookButton();
-        ConfigcurrentBooksButton();
+        ConfigCurrentBooksButton();
         flagBookList = 1;
-        ConfigfinishedBooksButton();
-//        ConfigWishListButton();
+        ConfigFinishedBooksButton();
         ConfigTextViews();
         ConfigToolBar();
         ConfigWishListButton();
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void ConfigcurrentBooksButton() {
+    private void ConfigCurrentBooksButton() {
 
         currentBooks = findViewById(R.id.button_current_bookList);
         currentBooks.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigfinishedBooksButton() {
+    private void ConfigFinishedBooksButton() {
 
         finishedBooks = findViewById(R.id.button_finished_bookList);
         finishedBooks.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ConfigureCurrentBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks_wishlist);
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
         final List<Book> bookLists = DAO.AllCurrentBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,
@@ -207,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ConfigureFinishedBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks_wishlist);
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
         final List<Book> bookLists = DAO.AllFinishedBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,

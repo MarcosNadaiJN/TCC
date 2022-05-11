@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,36 +67,35 @@ public class NewBookWishListActivity extends AppCompatActivity {
     }
 
     private void ConfigureAddButton(BookDAO DAO) {
-        Button add = findViewById(R.id.button_add_book_WishList);
+        Button add = findViewById(R.id.button_read_book_WishList);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Book newBook = createBook();
-//                save(newBook, DAO);
+                BookWishList newBookWishList = createBook();
+                save(newBookWishList, DAO);
 
                 finish();
             }
         });
     }
 
-    private void save(Book List, BookDAO DAO) {
+    private void save(BookWishList List, BookDAO DAO) {
 //        Intent data = getIntent();
 //        Bundle extras = data.getExtras();
 //        int listViewSize = extras.getInt("size");
 //        System.out.println(listViewSize);
 
-
         DAO.save(List);
     }
 
-    private void createBook() {
+    private BookWishList createBook() {
         String bookName = BookName.getText().toString();
         String bookAuthor = BookAuthor.getText().toString();
         int book_totalPages = Integer.parseInt(BookTotalPages_Value.getText().toString());
 //        int book_currentPage = Integer.parseInt(Book_CurrentPage_Value.getText().toString());
         //int book_leftPages = book_totalPages - book_currentPage;
 
-//        return new Book(bookName, bookAuthor, book_totalPages, book_currentPage);
+        return new BookWishList(bookName, bookAuthor, book_totalPages);
     }
 
     //Sets PickedImage as BookImage

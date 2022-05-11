@@ -20,6 +20,7 @@
         <activity android:name=".EditBookActivity"></activity>
         <activity android:name=".WishListActivity"></activity>
         <activity android:name=".NewBookWishListActivity"></activity>
+        <activity android:name=".EditBookWishListActivity"></activity>
     </application>
 
 </manifest>
