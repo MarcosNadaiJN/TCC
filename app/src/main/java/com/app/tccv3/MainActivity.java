@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigTextViews() {
 
-        TotalBooks = findViewById(R.id.textview_totalbooksValue_booklistscreenWishList);
+        TotalBooks = findViewById(R.id.textview_TotalBooksValue_WishList);
         TotalPages = findViewById(R.id.textView_totalpagesvalue_booklistscreen);
         ReadPages = findViewById(R.id.textView_readpagesvalue_booklistscreen);
         LeftPages = findViewById(R.id.textView_leaftpagesvalue_booklistscreen);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ConfigureHeaderCurrentBooks();
+                ConfigureHeaderBooks();
                 ConfigureCurrentBookList();
             }
         });
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ConfigureHeaderFinishedBooks();
+                ConfigureHeaderBooks();
                 ConfigureFinishedBookList();
             }
         });
@@ -139,48 +139,35 @@ public class MainActivity extends AppCompatActivity {
 
         super.onResume();
         ConfigureCurrentBookList();
-        ConfigureHeaderCurrentBooks();
+        ConfigureHeaderBooks();
 
     }
 
 
-    private void ConfigureHeaderCurrentBooks() {
+    private void ConfigureHeaderBooks() {
 
-        List<Integer> Values = DAO.infoHeaderCurrentBooks();
+        List<Integer> ValuesCurrentBooks = DAO.infoHeaderCurrentBooks();
+        List<Integer> ValuesFinishedBooks = DAO.infoHeaderFinishedBooks();
 
-        TotalBooks_value = Values.get(0);
+
+        TotalBooks_value = ValuesCurrentBooks.get(0)+ValuesFinishedBooks.get(0);
         TotalBooks.setText(Integer.toString(TotalBooks_value));
 
-//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
+        FinishedBooks_value = ValuesFinishedBooks.get(0);
+        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
 
-        TotalPages_value = Values.get(1);
+        TotalPages_value = ValuesCurrentBooks.get(1);
         TotalPages.setText(Integer.toString(TotalPages_value));
 
-        ReadPages_value  = Values.get(2);
+        ReadPages_value  = ValuesCurrentBooks.get(2);
         ReadPages.setText(Integer.toString(ReadPages_value));
 
         LeftPages_value = TotalPages_value - ReadPages_value;
         LeftPages.setText(Integer.toString(LeftPages_value));
 
-    }
 
-    private void ConfigureHeaderFinishedBooks() {
-
-        List<Integer> Values = DAO.infoHeaderFinishedBooks();
-
-        TotalBooks_value = Values.get(0);
-        TotalBooks.setText(Integer.toString(TotalBooks_value));
-
-//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
-
-        TotalPages_value = Values.get(1);
-        TotalPages.setText(Integer.toString(TotalPages_value));
-
-        ReadPages_value  = Values.get(2);
-        ReadPages.setText(Integer.toString(ReadPages_value));
-
-        LeftPages_value = TotalPages_value - ReadPages_value;
-        LeftPages.setText(Integer.toString(LeftPages_value));
+        LeftBooks_value = TotalBooks_value - FinishedBooks_value;
+        LeftBooks.setText(Integer.toString(LeftBooks_value));
 
     }
 

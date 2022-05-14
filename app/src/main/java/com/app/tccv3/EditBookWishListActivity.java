@@ -22,7 +22,7 @@ public class EditBookWishListActivity extends AppCompatActivity {
     TextView Book_TotalPages;
     EditText Book_TotalPages_Value;
 
-    BookWishList book;
+    BookWishList bookWishList;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,11 +41,11 @@ public class EditBookWishListActivity extends AppCompatActivity {
     private void getBookInformation() {
 
         Intent data = getIntent();
-        book = (BookWishList) data.getSerializableExtra("book");
-        Book_Image.setImageURI(book.getBookImage());
-        Book_Name.setText(book.getName());
-        Book_Author.setText(book.getAuthor());
-        Book_TotalPages_Value.setText(String.valueOf(book.getTotalPages()));
+        bookWishList = (BookWishList) data.getSerializableExtra("book");
+        Book_Image.setImageURI(bookWishList.getBookImage());
+        Book_Name.setText(bookWishList.getName());
+        Book_Author.setText(bookWishList.getAuthor());
+        Book_TotalPages_Value.setText(String.valueOf(bookWishList.getTotalPages()));
 
         Intent flag = getIntent();
     }
@@ -93,8 +93,10 @@ public class EditBookWishListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent OpenAddNewBook = new Intent(EditBookWishListActivity.this,
                         NewBookActivity.class);
-                OpenAddNewBook.putExtra("book", book);
+                OpenAddNewBook.putExtra("book", ConvertBookWishListToBook(bookWishList));
+                finish();
                 startActivity(OpenAddNewBook);
+                DAO.delete(bookWishList.getID());
             }
         });
     }
@@ -106,11 +108,16 @@ public class EditBookWishListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DAO.delete(book.getID());
+                DAO.delete(bookWishList.getID());
 
                 finish();
             }
         });
+    }
+
+    private Book ConvertBookWishListToBook(BookWishList bookWishList) {
+        return new Book(bookWishList.getName(), bookWishList.getAuthor(),
+                bookWishList.getTotalPages(), 0);
     }
 
     private void AttBook() {
@@ -120,9 +127,9 @@ public class EditBookWishListActivity extends AppCompatActivity {
         String bookTotalPages = Book_TotalPages_Value.getText().toString();
         int book_TotalPages_value = Integer.parseInt(bookTotalPages);
 
-        book.setName(bookName);
-        book.setAuthor(bookAuthor);
-        book.setTotalPages(book_TotalPages_value);
+        bookWishList.setName(bookName);
+        bookWishList.setAuthor(bookAuthor);
+        bookWishList.setTotalPages(book_TotalPages_value);
     }
 
     //Sets PickedImage as BookImage

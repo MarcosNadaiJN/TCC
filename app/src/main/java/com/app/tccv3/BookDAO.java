@@ -15,11 +15,16 @@ public class BookDAO {
 
     public void initDadosTest () {
 
-        Book book1 = new Book("teste nf", "aut", 100, 10);
-        Book book2 = new Book("teste f", "aut 2", 50, 50);
+        Book book1 = new Book("teste nf", "aut 1", 100, 10);
+        Book book2 = new Book("teste nf2", "aut 2", 200, 20);
+
+        Book book3 = new Book("teste f", "aut 2", 60, 60);
+        Book book4 = new Book("teste f2", "aut 3", 70, 70);
 
         save(book1);
         save(book2);
+        save(book3);
+        save(book4);
     }
 
 

@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
 
-
     <TextView
         android:id="@+id/textview_titlebooklistscreenWishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
         android:fontFamily="sans-serif"
         android:text="@string/total_lists"
         android:textColor="@color/black"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_topheader"
         app:layout_constraintEnd_toStartOf="@+id/guideline_leaftmargin"
         app:layout_constraintStart_toStartOf="@+id/guideline_rightmargin"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_upperheader"
@@ -98,7 +98,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <TextView
-        android:id="@+id/textview_totalbooksValue_booklistscreenWishList"
+        android:id="@+id/textview_TotalBooksValue_WishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -148,10 +148,10 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue_booklistscreenWishList"
+        app:layout_constraintEnd_toEndOf="@+id/textview_TotalBooksValue_WishList"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue_booklistscreenWishList"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue_booklistscreenWishList" />
+        app:layout_constraintStart_toStartOf="@+id/textview_TotalBooksValue_WishList"
+        app:layout_constraintTop_toBottomOf="@+id/textview_TotalBooksValue_WishList" />
 
     <TextView
         android:id="@+id/textView_readpages_booklistscreen"
@@ -284,6 +284,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -343,7 +344,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="205dp" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

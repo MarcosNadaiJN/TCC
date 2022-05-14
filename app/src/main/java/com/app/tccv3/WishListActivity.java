@@ -29,6 +29,7 @@ public class WishListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wishlist);
         InitializingFields();
         ConfigureNewBookButton();
+        ConfigureTotalBooksValue();
     }
 
     @Override
@@ -36,13 +37,18 @@ public class WishListActivity extends AppCompatActivity {
 
         super.onResume();
         ConfigureCurrentBookWishList();
+        ConfigureTotalBooksValue();
+    }
 
+    private void ConfigureTotalBooksValue() {
+        Integer totalBooksValue = DAO.AllWishListBooks().size();
+        TotalBooksValue.setText(Integer.toString(totalBooksValue));
     }
 
     private void InitializingFields(){
         Title = findViewById(R.id.textview_titlebooklistscreenWishList);
         TotalBooks = findViewById(R.id.textview_totalbooks_booklistscreenWishList);
-        TotalBooksValue = findViewById(R.id.textview_totalbooksValue_booklistscreenWishList);
+        TotalBooksValue = findViewById(R.id.textview_TotalBooksValue_WishList);
         listWishlist = findViewById(R.id.listview_listofbooks);
         newbook = findViewById(R.id.floatingActionButton_newBook_wishlist);
     }
