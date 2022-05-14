@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ public class EditBookActivity extends AppCompatActivity {
     TextView Book_LeftPages;
     TextView Book_LeftPages_Value;
     TextView Book_is_finished_value;
+    ProgressBar Book_Progress_Bar;
+    TextView Book_Progress_Value;
 
     Book book;
     Integer flagBookList;
@@ -56,9 +59,19 @@ public class EditBookActivity extends AppCompatActivity {
         Book_LeftPages_Value.setText(String.valueOf(book.getLeftPages()));
         if (book.getFinished() == false) Book_is_finished_value.setText("Não");
         else Book_is_finished_value.setText("Sim");
-
+        ConfigureProgressBar();
+        ConfigureProgressValue();
         Intent flag = getIntent();
         flagBookList = (Integer) flag.getSerializableExtra("flag");
+    }
+
+    private void ConfigureProgressBar() {
+        Book_Progress_Bar.setProgress(book.getCurrentPage());
+        Book_Progress_Bar.setMax(book.getTotalPages());
+    }
+
+    private void ConfigureProgressValue(){
+        Book_Progress_Value.setText(((book.getCurrentPage()*100)/book.getTotalPages()) + "%");
     }
 
     private void ImagePicker() {
@@ -87,6 +100,8 @@ public class EditBookActivity extends AppCompatActivity {
         Book_LeftPages = findViewById(R.id.textview_leftpages_book_editor);
         Book_LeftPages_Value = findViewById(R.id.textview_leftpages_book_value_editor);
         Book_is_finished_value = findViewById(R.id.textView_book_is_finished_value);
+        Book_Progress_Bar = findViewById(R.id.progressBar);
+        Book_Progress_Value = findViewById(R.id.percentage_number_editor);
     }
 
     private void ConfigureCancelButton() {

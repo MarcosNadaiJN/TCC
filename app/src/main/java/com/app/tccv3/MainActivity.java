@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private int FinishedBooks_value;
     TextView LeftBooks;
     private int LeftBooks_value;
+
+    TextView ProgressValue;
+    ProgressBar progressBar;
 
     private FloatingActionButton newBook;
 
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         flagBookList = 1;
         ConfigFinishedBooksButton();
         ConfigTextViews();
+        ConfigureHeaderBooks();
         ConfigToolBar();
         ConfigWishListButton();
 
@@ -61,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void ConfigureProgressBar() {
+        progressBar.setProgress(ReadPages_value);
+        progressBar.setMax(TotalPages_value);
+    }
+
+    private void ConfigureProgressValue(){
+        ProgressValue.setText((ReadPages_value*100)/TotalPages_value + "%");
+    }
 
     private void ConfigToolBar() {
 
@@ -77,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         LeftPages = findViewById(R.id.textView_leaftpagesvalue_booklistscreen);
         FinishedBooks = findViewById(R.id.textview_totalbooksValue2_booklistscreen);
         LeftBooks = findViewById(R.id.textview_totalbooksValue3_booklistscreen);
+        ProgressValue = findViewById(R.id.textView_percentage_booklistscreen);
+        progressBar = findViewById(R.id.progressBar_booklistscreen);
     }
 
     private void ConfigWishListButton(){
@@ -140,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         ConfigureCurrentBookList();
         ConfigureHeaderBooks();
-
     }
 
 
@@ -169,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
         LeftBooks_value = TotalBooks_value - FinishedBooks_value;
         LeftBooks.setText(Integer.toString(LeftBooks_value));
 
+        ConfigureProgressBar();
+        ConfigureProgressValue();
     }
 
     private void ConfigureCurrentBookList() {
