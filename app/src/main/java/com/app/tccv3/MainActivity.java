@@ -1,13 +1,10 @@
 package com.app.tccv3;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ConfigNewBookButton();
-        ConfigcurrentBooksButton();
+        ConfigCurrentBooksButton();
         flagBookList = 1;
-        ConfigfinishedBooksButton();
-//        ConfigWishListButton();
+        ConfigFinishedBooksButton();
         ConfigTextViews();
         ConfigToolBar();
+        ConfigWishListButton();
 
         DAO.initDadosTest();
 
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigTextViews() {
 
-        TotalBooks = findViewById(R.id.textview_totalbooksValue_booklistscreenWishList);
+        TotalBooks = findViewById(R.id.textview_TotalBooksValue_WishList);
         TotalPages = findViewById(R.id.textView_totalpagesvalue_booklistscreen);
         ReadPages = findViewById(R.id.textView_readpagesvalue_booklistscreen);
         LeftPages = findViewById(R.id.textView_leaftpagesvalue_booklistscreen);
@@ -82,37 +79,44 @@ public class MainActivity extends AppCompatActivity {
         LeftBooks = findViewById(R.id.textview_totalbooksValue3_booklistscreen);
     }
 
-//    private void ConfigWishListButton(){
-//        WishList = findViewById(R.id.button_wishlist_wishlist);
-//        WishList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openWishListActivity();
-//            }
-//        });
-//    }
+    private void ConfigWishListButton(){
+        WishList = findViewById(R.id.button_wishlist);
+        WishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWishListActivity();
+            }
+        });
+    }
 
-    private void ConfigcurrentBooksButton() {
+    public void openWishListActivity() {
 
-        currentBooks = findViewById(R.id.button_current_wishlist);
+        Intent intent = new Intent(this, WishListActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void ConfigCurrentBooksButton() {
+
+        currentBooks = findViewById(R.id.button_current_bookList);
         currentBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ConfigureHeaderCurrentBooks();
+                ConfigureHeaderBooks();
                 ConfigureCurrentBookList();
             }
         });
     }
 
-    private void ConfigfinishedBooksButton() {
+    private void ConfigFinishedBooksButton() {
 
-        finishedBooks = findViewById(R.id.button_finished_wishlist);
+        finishedBooks = findViewById(R.id.button_finished_bookList);
         finishedBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ConfigureHeaderFinishedBooks();
+                ConfigureHeaderBooks();
                 ConfigureFinishedBookList();
             }
         });
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigNewBookButton() {
 
-        newBook = findViewById(R.id.floatingActionButton_newBook_wishlist);
+        newBook = findViewById(R.id.floatingActionButton_newBook);
         newBook.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -135,53 +139,40 @@ public class MainActivity extends AppCompatActivity {
 
         super.onResume();
         ConfigureCurrentBookList();
-        ConfigureHeaderCurrentBooks();
+        ConfigureHeaderBooks();
 
     }
 
 
-    private void ConfigureHeaderCurrentBooks() {
+    private void ConfigureHeaderBooks() {
 
-        List<Integer> Values = DAO.infoHeaderCurrentBooks();
+        List<Integer> ValuesCurrentBooks = DAO.infoHeaderCurrentBooks();
+        List<Integer> ValuesFinishedBooks = DAO.infoHeaderFinishedBooks();
 
-        TotalBooks_value = Values.get(0);
+
+        TotalBooks_value = ValuesCurrentBooks.get(0)+ValuesFinishedBooks.get(0);
         TotalBooks.setText(Integer.toString(TotalBooks_value));
 
-//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
+        FinishedBooks_value = ValuesFinishedBooks.get(0);
+        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
 
-        TotalPages_value = Values.get(1);
+        TotalPages_value = ValuesCurrentBooks.get(1);
         TotalPages.setText(Integer.toString(TotalPages_value));
 
-        ReadPages_value  = Values.get(2);
+        ReadPages_value  = ValuesCurrentBooks.get(2);
         ReadPages.setText(Integer.toString(ReadPages_value));
 
         LeftPages_value = TotalPages_value - ReadPages_value;
         LeftPages.setText(Integer.toString(LeftPages_value));
 
-    }
 
-    private void ConfigureHeaderFinishedBooks() {
-
-        List<Integer> Values = DAO.infoHeaderFinishedBooks();
-
-        TotalBooks_value = Values.get(0);
-        TotalBooks.setText(Integer.toString(TotalBooks_value));
-
-//        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
-
-        TotalPages_value = Values.get(1);
-        TotalPages.setText(Integer.toString(TotalPages_value));
-
-        ReadPages_value  = Values.get(2);
-        ReadPages.setText(Integer.toString(ReadPages_value));
-
-        LeftPages_value = TotalPages_value - ReadPages_value;
-        LeftPages.setText(Integer.toString(LeftPages_value));
+        LeftBooks_value = TotalBooks_value - FinishedBooks_value;
+        LeftBooks.setText(Integer.toString(LeftBooks_value));
 
     }
 
     private void ConfigureCurrentBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks_wishlist);
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
         final List<Book> bookLists = DAO.AllCurrentBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,
@@ -202,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ConfigureFinishedBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks_wishlist);
+        ListView BookListView = findViewById(R.id.listview_listofbooks);
         final List<Book> bookLists = DAO.AllFinishedBooks();
         BookListView.setAdapter(new ArrayAdapter<>(
                 this,

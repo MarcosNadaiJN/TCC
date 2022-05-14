@@ -91,7 +91,7 @@ public class EditBookActivity extends AppCompatActivity {
 
     private void ConfigureCancelButton() {
 
-        Button cancel = (Button) findViewById(R.id.button_cancel_book_wishlist);
+        Button cancel = (Button) findViewById(R.id.button_cancel_book);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,11 +147,6 @@ public class EditBookActivity extends AppCompatActivity {
         book.setLeftPages(book_LeftPages_value);
         book.setLeftPages(book_LeftPages_value);
         book.setFinished(book_TotalPages_value == book_CurrentPages_value);
-    }
-
-    private void DeleteBook() {
-
-
     }
 
     //Sets PickedImage as BookImage

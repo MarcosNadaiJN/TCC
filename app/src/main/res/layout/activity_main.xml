@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
 
-
     <TextView
         android:id="@+id/textview_titlebooklistscreenWishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
         android:fontFamily="sans-serif"
         android:text="@string/total_lists"
         android:textColor="@color/black"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_topheader"
         app:layout_constraintEnd_toStartOf="@+id/guideline_leaftmargin"
         app:layout_constraintStart_toStartOf="@+id/guideline_rightmargin"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_upperheader"
@@ -98,7 +98,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <TextView
-        android:id="@+id/textview_totalbooksValue_booklistscreenWishList"
+        android:id="@+id/textview_TotalBooksValue_WishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -148,10 +148,10 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_totalbooksValue_booklistscreenWishList"
+        app:layout_constraintEnd_toEndOf="@+id/textview_TotalBooksValue_WishList"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textview_totalbooksValue_booklistscreenWishList"
-        app:layout_constraintTop_toBottomOf="@+id/textview_totalbooksValue_booklistscreenWishList" />
+        app:layout_constraintStart_toStartOf="@+id/textview_TotalBooksValue_WishList"
+        app:layout_constraintTop_toBottomOf="@+id/textview_TotalBooksValue_WishList" />
 
     <TextView
         android:id="@+id/textView_readpages_booklistscreen"
@@ -259,7 +259,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_readpagesvalue_booklistscreen" />
 
     <ListView
-        android:id="@+id/listview_listofbooks_wishlist"
+        android:id="@+id/listview_listofbooks"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -268,7 +268,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_bottomheader" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton_newBook_wishlist"
+        android:id="@+id/floatingActionButton_newBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -284,6 +284,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -308,22 +309,33 @@
                 />
 
             <Button
-                android:id="@+id/button_finished_wishlist"
+                android:id="@+id/button_wishlist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Finalizados"
-                app:layout_constraintBottom_toBottomOf="@+id/mainToolbar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                android:layout_marginStart="16dp"
+                android:text="@string/wishlist"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button_current_wishlist"
+                android:id="@+id/button_current_bookList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Atuais"
+                android:text="@string/atuais"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                app:layout_constraintEnd_toStartOf="@+id/button_finished_bookList"
+                app:layout_constraintStart_toEndOf="@+id/button_wishlist"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_finished_bookList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/finalizados"
+                app:layout_constraintBottom_toBottomOf="@+id/mainToolbar"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -333,16 +345,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="205dp" />
 
-            <Button
-                android:id="@+id/button_wishlist_wishlist"
-                android:layout_width="56dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="16dp"
-                app:icon="@drawable/ic_menu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_current_wishlist"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

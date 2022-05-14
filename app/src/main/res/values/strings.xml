@@ -26,4 +26,11 @@
     <string name="Save_Button">Salvar</string>
     <string name="button_save">SALVAR</string>
     <string name="delete">deletar</string>
+    <string name="finalizados">Finalizados</string>
+    <string name="atuais">Atuais</string>
+    <string name="wishlist">WishList</string>
+    <string name="atuais_wishlist">Atuais</string>
+    <string name="finalizados_wishlist">Finalizados</string>
+    <string name="voltar_wishlist">Voltar</string>
+    <string name="read_button">Ler</string>
 </resources>
