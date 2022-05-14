@@ -155,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         ConfigureCurrentBookList();
         ConfigureHeaderBooks();
+        ConfigureProgressBar();
+        ConfigureProgressValue();
     }
 
 
@@ -183,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
         LeftBooks_value = TotalBooks_value - FinishedBooks_value;
         LeftBooks.setText(Integer.toString(LeftBooks_value));
 
-        ConfigureProgressBar();
-        ConfigureProgressValue();
     }
 
     private void ConfigureCurrentBookList() {
