@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
+        System.out.println(flagBookList);
         ConfigureCurrentBookList();
         ConfigureHeaderBooks();
         ConfigureProgressBar();
