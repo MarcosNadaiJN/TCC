@@ -3,8 +3,11 @@ package com.app.tccv3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.app.tccv3.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -45,15 +49,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
 
+    private ActivityMainBinding binding;
 
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
+//        setContentView(binding.getRoot());
         ConfigNewBookButton();
+        ConfigNewAlarmButton();
         ConfigCurrentBooksButton();
         flagBookList = 1;
         ConfigFinishedBooksButton();
@@ -63,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
         ConfigWishListButton();
 
         DAO.initDadosTest();
+
+        alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmMgr.set(AlarmManager.RTC_WAKEUP,
+                SystemClock.elapsedRealtime() +
+                        30 * 1000, alarmIntent);
 
     }
 
@@ -145,6 +164,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openNewBookActivity();
+            }
+        });
+    }
+
+    private void ConfigNewAlarmButton() {
+
+        newBook = findViewById(R.id.floatingActionButton_alarmList);
+        newBook.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+//                openNewAlarmActivity();
             }
         });
     }
@@ -235,5 +266,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
+
+//    public void openNewAlarmActivity() {
+//
+//        Intent intent = new Intent(this, AlarmListActivity.class);
+//        startActivity(intent);
+//    }
 
 }

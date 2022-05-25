@@ -33,4 +33,6 @@
     <string name="finalizados_wishlist">Finalizados</string>
     <string name="voltar_wishlist">Voltar</string>
     <string name="read_button">Ler</string>
+    <string name="add_alarm">Add Alarm</string>
+    <string name="lembretes">Lembretes</string>
 </resources>

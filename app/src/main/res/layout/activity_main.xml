@@ -282,6 +282,21 @@
         android:focusable="true"
         android:contentDescription="@string/addlist_floatingbutton" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_alarmList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/addlist_floatingbutton"
+        android:focusable="true"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="24dp"
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
