@@ -7,19 +7,20 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class NewAlarmActivity extends AppCompatActivity {
+public class EditAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_alarm);
+        setContentView(R.layout.edit_alarm);
         InitializingFields();
 
 //        AlarmDAO DAO = new AlarmDAO();
 
         ConfigureSetAlarmButton(DAO);
         ConfigurePickTimeButton();
+        ConfigureCancelAlarmButton();
     }
 
     private void InitializingFields() {
@@ -40,6 +41,16 @@ public class NewAlarmActivity extends AppCompatActivity {
     }
 
     private void ConfigurePickTimeButton() {
+        Button pickTime = findViewById(R.id.button_pickTime);
+        pickTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void ConfigureCancelAlarmButton() {
         Button pickTime = findViewById(R.id.button_pickTime);
         pickTime.setOnClickListener(new View.OnClickListener() {
             @Override

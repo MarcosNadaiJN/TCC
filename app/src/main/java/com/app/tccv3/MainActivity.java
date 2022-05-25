@@ -74,14 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         DAO.initDadosTest();
 
-        alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmMgr.set(AlarmManager.RTC_WAKEUP,
-                SystemClock.elapsedRealtime() +
-                        30 * 1000, alarmIntent);
 
     }
 
@@ -176,6 +169,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                openNewAlarmActivity();
+
+                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
+                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+                alarmMgr.set(AlarmManager.RTC_WAKEUP,
+                        SystemClock.elapsedRealtime() +
+                                30 * 1000, alarmIntent);
             }
         });
     }

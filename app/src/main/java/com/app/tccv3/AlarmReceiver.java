@@ -24,8 +24,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "teste")
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("notificação")
-                .setContentText("Teste")
+                .setContentTitle("Hora da Leitura")
+                .setContentText("Está na hora de fortalecer seu hábito de leitura")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
