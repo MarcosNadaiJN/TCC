@@ -1,5 +1,6 @@
 package com.app.tccv3;
 
+import android.app.AlarmManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +12,13 @@ public class NewAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_alarm);
         InitializingFields();
 
-//        AlarmDAO DAO = new AlarmDAO();
+        AlarmDAO DAO = new AlarmDAO();
 
         ConfigureSetAlarmButton(DAO);
         ConfigurePickTimeButton();

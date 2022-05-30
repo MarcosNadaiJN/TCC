@@ -20,6 +20,7 @@ import com.app.tccv3.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private Button WishList;
 
     private final BookDAO DAO = new BookDAO();
+
+    private final AlarmDAO alarmDAO = new AlarmDAO();
 
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
 
@@ -164,20 +167,31 @@ public class MainActivity extends AppCompatActivity {
     private void ConfigNewAlarmButton() {
 
         newBook = findViewById(R.id.floatingActionButton_alarmList);
+        AlarmManager mgrAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        int requestCode = alarmDAO.CurrentIDCounter();
+
         newBook.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 //                openNewAlarmActivity();
 
-                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+//                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
+//                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
+//                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
+//                        PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//                alarmMgr.set(AlarmManager.RTC_WAKEUP,
+//                        SystemClock.elapsedRealtime() +
+//                                30 * 1000, alarmIntent);
 
-                alarmMgr.set(AlarmManager.RTC_WAKEUP,
-                        SystemClock.elapsedRealtime() +
-                                30 * 1000, alarmIntent);
+                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this,
+                        requestCode, intent, 0);
+                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
+
+                alarmDAO.save(alarmIntent);
             }
         });
     }
@@ -198,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<Integer> ValuesCurrentBooks = DAO.infoHeaderCurrentBooks();
         List<Integer> ValuesFinishedBooks = DAO.infoHeaderFinishedBooks();
-
 
         TotalBooks_value = ValuesCurrentBooks.get(0)+ValuesFinishedBooks.get(0);
         TotalBooks.setText(Integer.toString(TotalBooks_value));

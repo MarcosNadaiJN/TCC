@@ -11,12 +11,13 @@ public class EditAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_alarm);
         InitializingFields();
 
-//        AlarmDAO DAO = new AlarmDAO();
+        AlarmDAO DAO = new AlarmDAO();
 
         ConfigureSetAlarmButton(DAO);
         ConfigurePickTimeButton();
