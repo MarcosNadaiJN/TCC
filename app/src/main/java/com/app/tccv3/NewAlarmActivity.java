@@ -1,27 +1,42 @@
 package com.app.tccv3;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.app.tccv3.databinding.ActivityMainBinding;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
 
 public class NewAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
 
+    private final AlarmDAO alarmDAO = new AlarmDAO();
+    private MaterialTimePicker picker;
+    private Calendar calendar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_alarm);
         InitializingFields();
 
-        AlarmDAO DAO = new AlarmDAO();
+//        AlarmDAO DAO = new AlarmDAO();
 
-        ConfigureSetAlarmButton(DAO);
+        ConfigureSetAlarmButton(alarmDAO);
         ConfigurePickTimeButton();
+
     }
 
     private void InitializingFields() {
@@ -33,8 +48,19 @@ public class NewAlarmActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Book newBook = createBook();
-//                save(newBook, DAO);
+
+                AlarmManager mgrAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                int requestCode = alarmDAO.CurrentIDCounter();
+
+                Intent intent = new Intent(NewAlarmActivity.this, AlarmReceiver.class);
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(NewAlarmActivity.this,
+                        requestCode, intent, 0);
+//                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
+
+                mgrAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+
+                alarmDAO.save(alarmIntent);
 
                 finish();
             }
@@ -46,6 +72,35 @@ public class NewAlarmActivity extends AppCompatActivity {
         pickTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
+                showTimePicker();
+
+            }
+        });
+    }
+
+    private void showTimePicker() {
+
+        picker = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(0)
+                .setMinute(0)
+                .setTitleText("Selecione a Hora do Lembrete")
+                .build();
+
+        picker.show(getSupportFragmentManager(), "Leitura");
+
+        picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alarmTime.setText(String.format("%02d",picker.getHour())+":"+String.format("%02d",picker.getMinute()));
+
+                calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());
+                calendar.set(Calendar.MINUTE, picker.getMinute());
+                calendar.set(Calendar.SECOND,0);
+                calendar.set(Calendar.MILLISECOND,0);
 
             }
         });

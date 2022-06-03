@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -20,7 +21,6 @@ import com.app.tccv3.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
-import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton newBook;
 
+    private FloatingActionButton newAlarm;
+
     private Button currentBooks;
     private Button finishedBooks;
     private Button WishList;
@@ -62,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
-//        setContentView(binding.getRoot());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(R.layout.activity_main);
+        setContentView(binding.getRoot());
         ConfigNewBookButton();
         ConfigNewAlarmButton();
         ConfigCurrentBooksButton();
@@ -166,15 +168,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigNewAlarmButton() {
 
-        newBook = findViewById(R.id.floatingActionButton_alarmList);
-        AlarmManager mgrAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        int requestCode = alarmDAO.CurrentIDCounter();
+        newAlarm = findViewById(R.id.floatingActionButton_alarmList);
 
-        newBook.setOnClickListener(new View.OnClickListener() {
+
+        newAlarm.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                openNewAlarmActivity();
+                openNewAlarmActivity();
 
 //                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
 //                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -185,13 +186,13 @@ public class MainActivity extends AppCompatActivity {
 //                        SystemClock.elapsedRealtime() +
 //                                30 * 1000, alarmIntent);
 
-                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this,
-                        requestCode, intent, 0);
-                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
-
-                alarmDAO.save(alarmIntent);
+//                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+//                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this,
+//                        requestCode, intent, 0);
+//                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
+//
+//                alarmDAO.save(alarmIntent);
             }
         });
     }
@@ -282,10 +283,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void openNewAlarmActivity() {
-//
-//        Intent intent = new Intent(this, AlarmListActivity.class);
-//        startActivity(intent);
-//    }
+    public void openNewAlarmActivity() {
+
+        Intent intent = new Intent(this, NewAlarmActivity.class);
+        startActivity(intent);
+    }
 
 }
