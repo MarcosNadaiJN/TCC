@@ -5,10 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -175,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                openNewAlarmActivity();
+                openAlarmListActivity();
 
 //                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
 //                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -283,9 +281,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openNewAlarmActivity() {
+    public void openAlarmListActivity() {
 
-        Intent intent = new Intent(this, NewAlarmActivity.class);
+        Intent intent = new Intent(this, AlarmListActivity.class);
         startActivity(intent);
     }
 

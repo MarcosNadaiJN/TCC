@@ -1,5 +1,7 @@
 package com.app.tccv3;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EditAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
+    Bundle alarm;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,14 @@ public class EditAlarmActivity extends AppCompatActivity {
         ConfigureSetAlarmButton(DAO);
         ConfigurePickTimeButton();
         ConfigureCancelAlarmButton();
+        getAlarmInformation();
+    }
+
+    private void getAlarmInformation() {
+        Intent data = getIntent();
+        alarm = data.getExtras();
+        System.out.println(alarm.toString());
+
     }
 
     private void InitializingFields() {
@@ -52,7 +63,7 @@ public class EditAlarmActivity extends AppCompatActivity {
     }
 
     private void ConfigureCancelAlarmButton() {
-        Button pickTime = findViewById(R.id.button_pickTime);
+        Button pickTime = findViewById(R.id.button_deleteAlarm);
         pickTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

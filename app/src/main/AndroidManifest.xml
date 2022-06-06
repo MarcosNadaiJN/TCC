@@ -22,6 +22,8 @@
         <activity android:name=".NewBookWishListActivity"></activity>
         <activity android:name=".EditBookWishListActivity"></activity>
         <activity android:name=".NewAlarmActivity"></activity>
+        <activity android:name=".EditAlarmActivity"></activity>
+        <activity android:name=".AlarmListActivity"></activity>
         <receiver android:name=".AlarmReceiver"/>
     </application>
 
