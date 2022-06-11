@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4E4E4">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editTextAlarmTimeEditor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="53dp"
+                android:layout_marginEnd="-2dp"
+                android:background="@android:color/transparent"
+                android:hint="00:00"
+                android:inputType="text"
+                android:maxHeight="70dp"
+                android:textAlignment="center"
+                android:textSize="60sp" />
+
+            <Button
+                android:id="@+id/buttonPickTimeEditor"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="69dp"
+                android:layout_marginBottom="133dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Selecionar Hora"
+                android:textColor="#03A9F4"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonSetAlarmEditor"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="79dp"
+                android:layout_marginBottom="77dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Definir Alarme"
+                android:textColor="#03A9F4"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonDeleteAlarmEditor"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="65dp"
+                android:layout_marginBottom="19dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Cancelar Alarme"
+                android:textColor="#03A9F4"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

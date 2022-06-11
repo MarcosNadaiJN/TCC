@@ -9,11 +9,11 @@
 
 
     <TextView
-        android:id="@+id/textViewTitleWishListActivity"
+        android:id="@+id/textview_titleAlarmList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Lista de Desejos"
+        android:text="@string/lembretes"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_topheader"
@@ -42,20 +42,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
-    <TextView
-        android:id="@+id/textViewTotalBooksTitleWishList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="4dp"
-        android:text="@string/wishListSubTitle"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTitleWishListActivity"
-        app:layout_constraintStart_toStartOf="@+id/textViewTitleWishListActivity"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitleWishListActivity" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_topheader"
         android:layout_width="wrap_content"
@@ -63,21 +49,8 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
-    <TextView
-        android:id="@+id/textViewTotalBooksValueWishList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/zero_defaultValue"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTotalBooksTitleWishList"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalBooksTitleWishList" />
-
     <ListView
-        android:id="@+id/listViewWishList"
+        android:id="@+id/listview_listOfAlarms"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_bottomheader" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonNewWishListBook"
+        android:id="@+id/floatingActionButton_newAlarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -98,7 +71,7 @@
         app:maxImageSize="24dp"
         app:srcCompat="@android:drawable/ic_menu_add"
         android:focusable="true"
-        android:contentDescription="@string/addlist_floatingbutton" />
+        android:contentDescription="@string/add_alarm" />
 
 
     <com.google.android.material.appbar.AppBarLayout

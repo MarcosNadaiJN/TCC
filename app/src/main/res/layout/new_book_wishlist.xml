@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/BookImage_WishList"
+                android:id="@+id/BookImageWishList"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_alignParentStart="true"
@@ -32,7 +32,7 @@
                 android:focusable="true" />
 
             <EditText
-                android:id="@+id/edittext_title_book_WishList"
+                android:id="@+id/editTextBookTitleWishList"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -47,7 +47,7 @@
 
 
             <EditText
-                android:id="@+id/edittext_author_book_WishList"
+                android:id="@+id/editTextBookAuthorWishList"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -61,7 +61,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textview_total_pages_book_WishList"
+                android:id="@+id/textViewTotalPagesWishList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -74,13 +74,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/edittext_total_pages_book_value_wishList"
+                android:id="@+id/editTextTotalPagesValueWishList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="138dp"
-                android:layout_toEndOf="@+id/textview_total_pages_book_WishList"
+                android:layout_toEndOf="@+id/textViewTotalPagesWishList"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
@@ -89,7 +89,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button_read_book_WishList"
+                android:id="@+id/buttonAddBookWishList"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="170dp"
                 android:layout_height="50dp"
@@ -102,7 +102,7 @@
                 android:textColor="#03A9F4" />
 
             <Button
-                android:id="@+id/button_cancel_book_WishList"
+                android:id="@+id/buttonCancelWishList"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="170dp"
                 android:layout_height="50dp"

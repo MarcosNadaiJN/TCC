@@ -4,12 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.34427083333333336" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/activity_alarmlist.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/activity_wishlist.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/book_editor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/book_wishlist_editor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/edit_alarm.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/new_alarm.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/new_book.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marcos.junior/StudioProjects/TCC/app/src/main/res/layout/new_book_wishlist.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/layout/activity_WishList.xml" value="0.5946215139442231" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4711917916337806" />
+        <entry key="app/src/main/res/layout/activity_alarmList.xml" value="0.31354166666666666" />
+        <entry key="app/src/main/res/layout/activity_alarmlist.xml" value="0.31354166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4128878281622912" />
         <entry key="app/src/main/res/layout/activity_wishlist.xml" value="0.33" />
         <entry key="app/src/main/res/layout/book_editor.xml" value="0.5" />
         <entry key="app/src/main/res/layout/book_wishlist_editor.xml" value="0.5" />
         <entry key="app/src/main/res/layout/booklist.xml" value="0.334375" />
+        <entry key="app/src/main/res/layout/edit_alarm.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/new_alarm.xml" value="0.33" />
         <entry key="app/src/main/res/layout/new_book.xml" value="0.33" />
         <entry key="app/src/main/res/layout/new_book_wishlist.xml" value="0.33" />
         <entry key="app/src/main/res/layout/newlist_of_books.xml" value="0.334375" />

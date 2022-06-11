@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/BookImage_editor"
+                android:id="@+id/BookImageBookEditor"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_alignParentStart="true"
@@ -32,7 +32,7 @@
                 android:focusable="true" />
 
             <EditText
-                android:id="@+id/edittext_title_book_editor"
+                android:id="@+id/editTextBookTitleEditor"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/edittext_author_book_editor"
+                android:id="@+id/editTextBookAuthorEditor"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -61,7 +61,7 @@
 
 
             <TextView
-                android:id="@+id/textview_total_pages_book_editor"
+                android:id="@+id/textViewTotalPagesEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -74,13 +74,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/edittext_total_pages_book_value_editor"
+                android:id="@+id/editTextTotalPagesValueEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="183dp"
-                android:layout_toEndOf="@+id/textview_total_pages_book_editor"
+                android:layout_toEndOf="@+id/textViewTotalPagesEditor"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
@@ -89,7 +89,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textview_currentpage_book_editor"
+                android:id="@+id/textViewCurrentPageEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -102,13 +102,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/edittext_currentpage_book_value_editor"
+                android:id="@+id/editTextCurrentPageValueEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="221dp"
-                android:layout_toEndOf="@+id/textview_currentpage_book_editor"
+                android:layout_toEndOf="@+id/textViewCurrentPageEditor"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
@@ -117,7 +117,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textview_leftpages_book_editor"
+                android:id="@+id/textViewLeftPagesEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -130,13 +130,13 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textview_leftpages_book_value_editor"
+                android:id="@+id/textViewLeftPagesValueEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="260dp"
-                android:layout_toEndOf="@+id/textview_leftpages_book_editor"
+                android:layout_toEndOf="@+id/textViewLeftPagesEditor"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
                 android:hint="@string/zero_defaultValue"
@@ -144,7 +144,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button_save_book"
+                android:id="@+id/buttonSaveBookEditor"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
@@ -157,7 +157,7 @@
                 android:textColor="#03A9F4" />
 
             <Button
-                android:id="@+id/button_delete"
+                android:id="@+id/buttonDeleteEditor"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
@@ -165,14 +165,14 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginEnd="7dp"
                 android:layout_marginBottom="16dp"
-                android:layout_toStartOf="@+id/button_save_book"
-                android:layout_toEndOf="@+id/button_cancel_book"
+                android:layout_toStartOf="@+id/buttonSaveBookEditor"
+                android:layout_toEndOf="@+id/buttonCancelBookEditor"
                 android:backgroundTint="#FFFFFF"
                 android:text="@string/delete"
                 android:textColor="#03A9F4" />
 
             <Button
-                android:id="@+id/button_cancel_book"
+                android:id="@+id/buttonCancelBookEditor"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
@@ -185,22 +185,22 @@
                 android:textColor="#03A9F4" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBarEditor"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="267dp"
                 android:layout_height="34dp"
-                android:layout_above="@+id/button_cancel_book"
+                android:layout_above="@+id/buttonCancelBookEditor"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:layout_toStartOf="@+id/percentage_number_editor" />
+                android:layout_toStartOf="@+id/textViewPercentageValueEditor" />
 
             <TextView
-                android:id="@+id/percentage_number_editor"
+                android:id="@+id/textViewPercentageValueEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/button_save_book"
+                android:layout_above="@+id/buttonSaveBookEditor"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="22dp"
@@ -208,7 +208,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView_book_is_finished"
+                android:id="@+id/textViewBookIsFinishedEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -219,13 +219,13 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView_book_is_finished_value"
+                android:id="@+id/textViewBooksIsFinishedValueEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="297dp"
-                android:layout_toEndOf="@+id/textView_book_is_finished"
+                android:layout_toEndOf="@+id/textViewBookIsFinishedEditor"
                 android:text="Não"
                 android:textSize="18sp" />
 

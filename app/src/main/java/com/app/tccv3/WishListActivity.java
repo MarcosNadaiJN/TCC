@@ -15,46 +15,39 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class WishListActivity extends AppCompatActivity {
-    TextView Title;
-    TextView TotalBooks;
-    TextView TotalBooksValue;
-    ListView listWishlist;
-    FloatingActionButton newbook;
-
-    private final BookDAO DAO = new BookDAO();
+    TextView titleTextView;
+    TextView totalBooksTextView;
+    TextView totalBooksValueTextView;
+    ListView wishList_ListView;
+    FloatingActionButton newBookFloatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wishlist);
-        InitializingFields();
-        ConfigureNewBookButton();
-        ConfigureTotalBooksValue();
+        initializingFields();
+        configureNewBookButton();
+        configureTotalBooksValue();
     }
 
     @Override
     protected void onResume() {
 
         super.onResume();
-        ConfigureCurrentBookWishList();
-        ConfigureTotalBooksValue();
+        configureCurrentBookWishList();
+        configureTotalBooksValue();
     }
 
-    private void ConfigureTotalBooksValue() {
-        Integer totalBooksValue = DAO.AllWishListBooks().size();
-        TotalBooksValue.setText(Integer.toString(totalBooksValue));
+    private void initializingFields(){
+        titleTextView = findViewById(R.id.textViewTitleWishListActivity);
+        totalBooksTextView = findViewById(R.id.textViewTotalBooksTitleWishList);
+        totalBooksValueTextView = findViewById(R.id.textViewTotalBooksValueWishList);
+        wishList_ListView = findViewById(R.id.listViewBookList);
+        newBookFloatingActionButton = findViewById(R.id.floatingActionButtonNewWishListBook);
     }
 
-    private void InitializingFields(){
-        Title = findViewById(R.id.textview_titlebooklistscreenWishList);
-        TotalBooks = findViewById(R.id.textview_totalbooks_booklistscreenWishList);
-        TotalBooksValue = findViewById(R.id.textview_TotalBooksValue_WishList);
-        listWishlist = findViewById(R.id.listview_listofbooks);
-        newbook = findViewById(R.id.floatingActionButton_newBook_wishlist);
-    }
-
-    private void ConfigureNewBookButton(){
-        newbook.setOnClickListener(new View.OnClickListener() {
+    private void configureNewBookButton(){
+        newBookFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openNewBookWishListActivity();
@@ -62,26 +55,33 @@ public class WishListActivity extends AppCompatActivity {
         });
     }
 
+    private void configureTotalBooksValue() {
+
+        Integer totalBooksValue = BookDAO.allWishListBooks().size();
+        totalBooksValueTextView.setText(Integer.toString(totalBooksValue));
+    }
+
     private void openNewBookWishListActivity(){
         Intent intent = new Intent(this, NewBookWishListActivity.class);
         startActivity(intent);
     }
 
+    private void configureCurrentBookWishList() {
+        ListView bookListView = findViewById(R.id.listViewWishList);
+        final List<BookWishList> bookLists = BookDAO.allWishListBooks();
 
-    private void ConfigureCurrentBookWishList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks_wishList);
-        final List<BookWishList> bookLists = DAO.AllWishListBooks();
-        BookListView.setAdapter(new ArrayAdapter<>(
+        bookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 bookLists));
-        BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BookWishList chosenBook = bookLists.get(position);
-                Intent OpenBookEditor = new Intent(WishListActivity.this, EditBookWishListActivity.class);
-                OpenBookEditor.putExtra("book", chosenBook);
-                startActivity(OpenBookEditor);
+                Intent openBookEditorIntent = new Intent(WishListActivity.this, EditBookWishListActivity.class);
+                openBookEditorIntent.putExtra("book", chosenBook);
+                startActivity(openBookEditorIntent);
             }
         });
     }
