@@ -9,11 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-
-import java.util.Calendar;
-
 public class EditAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
@@ -27,11 +22,46 @@ public class EditAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_alarm);
-        InitializingFields();
-        ConfigureSetAlarmButton(alarmDAO);
-        ConfigurePickTimeButton();
-        ConfigureCancelAlarmButton();
+        initializingFields();
+        configureSetAlarmButton();
+        configurePickTimeButton();
+        configureCancelAlarmButton();
         getAlarmInformation();
+    }
+
+    private void initializingFields() {
+        alarmTime = findViewById(R.id.editTextAlarmTimeEditor);
+    }
+
+    private void configureSetAlarmButton() {
+        Button add = findViewById(R.id.buttonSetAlarmEditor);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+    }
+
+    private void configurePickTimeButton() {
+        Button pickTime = findViewById(R.id.buttonPickTimeEditor);
+        pickTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void configureCancelAlarmButton() {
+        Button pickTime = findViewById(R.id.buttonDeleteAlarmEditor);
+        pickTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void getAlarmInformation() {
@@ -41,42 +71,5 @@ public class EditAlarmActivity extends AppCompatActivity {
         time = String.format("%02d",hour)+":"+String.format("%02d",minute);
 
         alarmTime.setText(time);
-    }
-
-    private void InitializingFields() {
-        alarmTime = findViewById(R.id.edittext_alarmTime);
-    }
-
-    private void ConfigureSetAlarmButton(AlarmDAO DAO) {
-        Button add = findViewById(R.id.button_setAlarm);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Book newBook = createBook();
-//                save(newBook, DAO);
-
-                finish();
-            }
-        });
-    }
-
-    private void ConfigurePickTimeButton() {
-        Button pickTime = findViewById(R.id.button_pickTime);
-        pickTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    private void ConfigureCancelAlarmButton() {
-        Button pickTime = findViewById(R.id.button_deleteAlarm);
-        pickTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }

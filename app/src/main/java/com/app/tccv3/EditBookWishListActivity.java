@@ -16,43 +16,80 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 
 public class EditBookWishListActivity extends AppCompatActivity {
 
-    ImageView Book_Image;
-    EditText Book_Name;
-    EditText Book_Author;
-    TextView Book_TotalPages;
-    EditText Book_TotalPages_Value;
-
+    ImageView bookImageView;
+    EditText bookNameEditText;
+    EditText bookAuthorEditText;
+    EditText bookTotalPagesValueEditText;
+    TextView bookTotalPagesTextView;
     BookWishList bookWishList;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_wishlist_editor);
-        InitializingFields();
-        BookDAO DAO = new BookDAO();
-        ConfigureCancelButton();
-        ConfigureReadButton(DAO);
-        ConfigureDeleteButton(DAO);
-        ImagePicker();
+        initializingFields();
+        configureReadButton();
+        configureCancelButton();
+        configureDeleteButton();
+        imagePicker();
         getBookInformation();
 
     }
 
-    private void getBookInformation() {
+    private void initializingFields() {
 
-        Intent data = getIntent();
-        bookWishList = (BookWishList) data.getSerializableExtra("book");
-        Book_Image.setImageURI(bookWishList.getBookImage());
-        Book_Name.setText(bookWishList.getName());
-        Book_Author.setText(bookWishList.getAuthor());
-        Book_TotalPages_Value.setText(String.valueOf(bookWishList.getTotalPages()));
-
-        Intent flag = getIntent();
+        bookImageView = findViewById(R.id.BookImageWishList);
+        bookNameEditText = findViewById(R.id.editTextBookTitleWishList);
+        bookAuthorEditText = findViewById(R.id.editTextBookAuthorWishList);
+        bookTotalPagesTextView = findViewById(R.id.textViewTotalPagesWishList);
+        bookTotalPagesValueEditText = findViewById(R.id.editTextTotalPagesValueWishList);
     }
 
-    private void ImagePicker() {
+    private void configureReadButton() {
 
-        Book_Image.setOnClickListener(new View.OnClickListener() {
+        Button readButton = (Button) findViewById(R.id.buttonReadBookWishList);
+        readButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent openAddNewBookIntent = new Intent(EditBookWishListActivity.this,
+                        NewBookActivity.class);
+                openAddNewBookIntent.putExtra("book", convertBookWishListToBook(bookWishList));
+                finish();
+                startActivity(openAddNewBookIntent);
+                BookDAO.delete(bookWishList.getId());
+            }
+        });
+    }
+
+    private void configureCancelButton() {
+
+        Button cancelButton = (Button) findViewById(R.id.buttonCancelWishList);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+    }
+
+    private void configureDeleteButton() {
+
+        Button deleteButton = (Button) findViewById(R.id.buttonDeleteWishList);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BookDAO.delete(bookWishList.getId());
+                finish();
+            }
+        });
+    }
+
+    private void imagePicker() {
+
+        bookImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -64,80 +101,28 @@ public class EditBookWishListActivity extends AppCompatActivity {
         });
     }
 
-    private void InitializingFields() {
+    private void getBookInformation() {
 
-        Book_Image = findViewById(R.id.BookImage_WishList);
-        Book_Name = findViewById(R.id.edittext_title_book_WishList);
-        Book_Author = findViewById(R.id.edittext_author_book_WishList);
-        Book_TotalPages = findViewById(R.id.textview_total_pages_book_WishList);
-        Book_TotalPages_Value = findViewById(R.id.edittext_total_pages_book_value_wishList);
+        Intent data = getIntent();
+        bookWishList = (BookWishList) data.getSerializableExtra("book");
+        bookImageView.setImageURI(bookWishList.getBookImage());
+        bookNameEditText.setText(bookWishList.getName());
+        bookAuthorEditText.setText(bookWishList.getAuthor());
+        bookTotalPagesValueEditText.setText(String.valueOf(bookWishList.getTotalPages()));
     }
 
-    private void ConfigureCancelButton() {
+    private Book convertBookWishListToBook(BookWishList bookWishList) {
 
-        Button cancel = (Button) findViewById(R.id.button_cancel_book_WishList);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-            }
-        });
-    }
-
-    private void ConfigureReadButton(BookDAO DAO) {
-
-        Button read = (Button) findViewById(R.id.button_read_book_WishList);
-        read.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent OpenAddNewBook = new Intent(EditBookWishListActivity.this,
-                        NewBookActivity.class);
-                OpenAddNewBook.putExtra("book", ConvertBookWishListToBook(bookWishList));
-                finish();
-                startActivity(OpenAddNewBook);
-                DAO.delete(bookWishList.getID());
-            }
-        });
-    }
-
-    private void ConfigureDeleteButton(BookDAO DAO) {
-
-        Button add = (Button) findViewById(R.id.button_delete_WishList);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DAO.delete(bookWishList.getID());
-
-                finish();
-            }
-        });
-    }
-
-    private Book ConvertBookWishListToBook(BookWishList bookWishList) {
         return new Book(bookWishList.getName(), bookWishList.getAuthor(),
                 bookWishList.getTotalPages(), 0);
-    }
-
-    private void AttBook() {
-
-        String bookName = Book_Name.getText().toString();
-        String bookAuthor = Book_Author.getText().toString();
-        String bookTotalPages = Book_TotalPages_Value.getText().toString();
-        int book_TotalPages_value = Integer.parseInt(bookTotalPages);
-
-        bookWishList.setName(bookName);
-        bookWishList.setAuthor(bookAuthor);
-        bookWishList.setTotalPages(book_TotalPages_value);
     }
 
     //Sets PickedImage as BookImage
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
+        super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
-        Book_Image.setImageURI(uri);
+        bookImageView.setImageURI(uri);
     }
 }

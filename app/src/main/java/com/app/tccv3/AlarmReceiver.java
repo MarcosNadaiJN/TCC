@@ -33,8 +33,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManagerCompat notificationCompat = NotificationManagerCompat.from(context);
         notificationCompat.notify(123, builder.build());
 
-        System.out.println("RODOU");
-
     }
 
     private void createNotificationChannel(Context context) {

@@ -3,8 +3,6 @@ package com.app.tccv3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,283 +13,251 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.tccv3.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView TotalBooks;
-    private int TotalBooks_value;
-    TextView TotalPages;
-    private int TotalPages_value;
-    TextView ReadPages;
-    private int ReadPages_value;
-    TextView LeftPages;
-    private int LeftPages_value;
-    TextView FinishedBooks;
-    private int FinishedBooks_value;
-    TextView LeftBooks;
-    private int LeftBooks_value;
-
-    TextView ProgressValue;
+    TextView totalBooksTextView;
+    TextView totalPagesTextView;
+    private int totalPagesValue;
+    TextView readPagesTextView;
+    private int readPagesValue;
+    TextView leftPagesTextView;
+    TextView finishedBooksTextView;
+    TextView leftBooksTextView;
+    TextView progressValueTextView;
     ProgressBar progressBar;
 
-    private FloatingActionButton newBook;
-
-    private FloatingActionButton newAlarm;
-
-    private Button currentBooks;
-    private Button finishedBooks;
-    private Button WishList;
-
-    private final BookDAO DAO = new BookDAO();
-
     private final AlarmDAO alarmDAO = new AlarmDAO();
-
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
-
-    private ActivityMainBinding binding;
-
-    private AlarmManager alarmMgr;
-    private PendingIntent alarmIntent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(R.layout.activity_main);
-        setContentView(binding.getRoot());
-        ConfigNewBookButton();
-        ConfigNewAlarmButton();
-        ConfigCurrentBooksButton();
+        setContentView(R.layout.activity_main);
+        configNewBookButton();
+        configNewAlarmButton();
+        configCurrentBooksButton();
         flagBookList = 1;
-        ConfigFinishedBooksButton();
-        ConfigTextViews();
-        ConfigureHeaderBooks();
-        ConfigToolBar();
-        ConfigWishListButton();
-
-        DAO.initDadosTest();
-
-
-
-    }
-
-    private void ConfigureProgressBar() {
-        progressBar.setProgress(ReadPages_value);
-        progressBar.setMax(TotalPages_value);
-    }
-
-    private void ConfigureProgressValue(){
-        ProgressValue.setText((ReadPages_value*100)/TotalPages_value + "%");
-    }
-
-    private void ConfigToolBar() {
-
-        Toolbar toolbar = findViewById(R.id.mainToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-    }
-
-    private void ConfigTextViews() {
-
-        TotalBooks = findViewById(R.id.textview_TotalBooksValue_WishList);
-        TotalPages = findViewById(R.id.textView_totalpagesvalue_booklistscreen);
-        ReadPages = findViewById(R.id.textView_readpagesvalue_booklistscreen);
-        LeftPages = findViewById(R.id.textView_leaftpagesvalue_booklistscreen);
-        FinishedBooks = findViewById(R.id.textview_totalbooksValue2_booklistscreen);
-        LeftBooks = findViewById(R.id.textview_totalbooksValue3_booklistscreen);
-        ProgressValue = findViewById(R.id.textView_percentage_booklistscreen);
-        progressBar = findViewById(R.id.progressBar_booklistscreen);
-    }
-
-    private void ConfigWishListButton(){
-        WishList = findViewById(R.id.button_wishlist);
-        WishList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWishListActivity();
-            }
-        });
-    }
-
-    public void openWishListActivity() {
-
-        Intent intent = new Intent(this, WishListActivity.class);
-        startActivity(intent);
-    }
-
-
-    private void ConfigCurrentBooksButton() {
-
-        currentBooks = findViewById(R.id.button_current_bookList);
-        currentBooks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ConfigureHeaderBooks();
-                ConfigureCurrentBookList();
-            }
-        });
-    }
-
-    private void ConfigFinishedBooksButton() {
-
-        finishedBooks = findViewById(R.id.button_finished_bookList);
-        finishedBooks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ConfigureHeaderBooks();
-                ConfigureFinishedBookList();
-            }
-        });
-    }
-
-    private void ConfigNewBookButton() {
-
-        newBook = findViewById(R.id.floatingActionButton_newBook);
-        newBook.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                openNewBookActivity();
-            }
-        });
-    }
-
-    private void ConfigNewAlarmButton() {
-
-        newAlarm = findViewById(R.id.floatingActionButton_alarmList);
-
-
-        newAlarm.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (alarmDAO.AllCurrentAlarms().size() <= 0) {
-                    openNewAlarmActivity();
-                } else {
-                    openEditAlarmActivity();
-                }
-
-
-//                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-//                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
-//                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this, 0, broadCastItent,
-//                        PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//                alarmMgr.set(AlarmManager.RTC_WAKEUP,
-//                        SystemClock.elapsedRealtime() +
-//                                30 * 1000, alarmIntent);
-
-//                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
-//                PendingIntent alarmIntent = PendingIntent.getBroadcast(MainActivity.this,
-//                        requestCode, intent, 0);
-//                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
-//
-//                alarmDAO.save(alarmIntent);
-            }
-        });
-    }
-
-    private void openEditAlarmActivity() {
-        Intent intent = new Intent(this, EditAlarmActivity.class);
-        startActivity(intent);
+        configFinishedBooksButton();
+        configTextViews();
+        configureHeaderBooks();
+        configToolBar();
+        configWishListButton();
+        BookDAO.initDadosTest();
     }
 
     @Override
     protected void onResume() {
 
         super.onResume();
-        System.out.println(flagBookList);
         ConfigureCurrentBookList();
-        ConfigureHeaderBooks();
+        configureHeaderBooks();
         ConfigureProgressBar();
         ConfigureProgressValue();
     }
 
+    private void configNewBookButton() {
 
-    private void ConfigureHeaderBooks() {
+        FloatingActionButton newBookFloatingActionButton = findViewById(R.id.floatingActionButtonNewBook);
+        newBookFloatingActionButton.setOnClickListener(new View.OnClickListener() {
 
-        List<Integer> ValuesCurrentBooks = DAO.infoHeaderCurrentBooks();
-        List<Integer> ValuesFinishedBooks = DAO.infoHeaderFinishedBooks();
+            @Override
+            public void onClick(View v) {
+                OpenNewBookActivity();
+            }
+        });
+    }
 
-        TotalBooks_value = ValuesCurrentBooks.get(0)+ValuesFinishedBooks.get(0);
-        TotalBooks.setText(Integer.toString(TotalBooks_value));
+    private void configNewAlarmButton() {
 
-        FinishedBooks_value = ValuesFinishedBooks.get(0);
-        FinishedBooks.setText(Integer.toString(FinishedBooks_value));
+        FloatingActionButton newAlarmFloatingActionButton = findViewById(R.id.floatingActionButtonNewAlarm);
+        newAlarmFloatingActionButton.setOnClickListener(new View.OnClickListener() {
 
-        TotalPages_value = ValuesCurrentBooks.get(1);
-        TotalPages.setText(Integer.toString(TotalPages_value));
+            @Override
+            public void onClick(View v) {
+                if (alarmDAO.AllCurrentAlarms().size() <= 0) {
+                    OpenNewAlarmActivity();
+                } else {
+                    OpenEditAlarmActivity();
+                }
+            }
+        });
+    }
 
-        ReadPages_value  = ValuesCurrentBooks.get(2);
-        ReadPages.setText(Integer.toString(ReadPages_value));
+    private void configCurrentBooksButton() {
 
-        LeftPages_value = TotalPages_value - ReadPages_value;
-        LeftPages.setText(Integer.toString(LeftPages_value));
+        Button currentBooksButton = findViewById(R.id.buttonCurrentBooksList);
+        currentBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                configureHeaderBooks();
+                ConfigureCurrentBookList();
+            }
+        });
+    }
+
+    private void configFinishedBooksButton() {
+
+        Button finishedBooksButton = findViewById(R.id.buttonFinishedBooksList);
+        finishedBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                configureHeaderBooks();
+                ConfigureFinishedBookList();
+            }
+        });
+    }
+
+    private void configTextViews() {
+
+        totalBooksTextView = findViewById(R.id.textViewTotalBooksValue);
+        totalPagesTextView = findViewById(R.id.textViewTotalPagesValue);
+        readPagesTextView = findViewById(R.id.textViewReadPagesValue);
+        leftPagesTextView = findViewById(R.id.textViewLeftPagesValueMainActivity);
+        finishedBooksTextView = findViewById(R.id.textViewFinishedBooksValue);
+        leftBooksTextView = findViewById(R.id.textViewLeftBooksValue);
+        progressValueTextView = findViewById(R.id.textViewPercentageMainActivity);
+        progressBar = findViewById(R.id.progressBarMainActivity);
+    }
+
+    private void configureHeaderBooks() {
+
+        List<Integer> ValuesCurrentBooks = BookDAO.infoHeaderCurrentBooks();
+        List<Integer> ValuesFinishedBooks = BookDAO.infoHeaderFinishedBooks();
+
+        int totalBooksValue = ValuesCurrentBooks.get(0) + ValuesFinishedBooks.get(0);
+        totalBooksTextView.setText(Integer.toString(totalBooksValue));
+
+        int finishedBooksValue = ValuesFinishedBooks.get(0);
+        finishedBooksTextView.setText(Integer.toString(finishedBooksValue));
+
+        totalPagesValue = ValuesCurrentBooks.get(1);
+        totalPagesTextView.setText(Integer.toString(totalPagesValue));
+
+        readPagesValue = ValuesCurrentBooks.get(2);
+        readPagesTextView.setText(Integer.toString(readPagesValue));
+
+        int leftPagesValue = totalPagesValue - readPagesValue;
+        leftPagesTextView.setText(Integer.toString(leftPagesValue));
 
 
-        LeftBooks_value = TotalBooks_value - FinishedBooks_value;
-        LeftBooks.setText(Integer.toString(LeftBooks_value));
+        int leftBooksValue = totalBooksValue - finishedBooksValue;
+        leftBooksTextView.setText(Integer.toString(leftBooksValue));
 
     }
 
+    private void configToolBar() {
+
+        Toolbar toolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+    }
+
+    private void configWishListButton(){
+
+        Button wishListButton = findViewById(R.id.buttonWishList);
+        wishListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenWishListActivity();
+            }
+        });
+    }
+
+    private void ConfigureProgressBar() {
+
+        progressBar.setProgress(readPagesValue);
+        progressBar.setMax(totalPagesValue);
+    }
+
+    private void ConfigureProgressValue(){
+
+        if (totalPagesValue > 0) {
+            progressValueTextView.setText((readPagesValue *100)/ totalPagesValue + "%");
+        } else {
+            progressValueTextView.setText("0%");
+        }
+    }
+
+    public void OpenWishListActivity() {
+
+        Intent intent = new Intent(this, WishListActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void OpenEditAlarmActivity() {
+
+        Intent intent = new Intent(this, EditAlarmActivity.class);
+        startActivity(intent);
+    }
+
+
     private void ConfigureCurrentBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks);
-        final List<Book> bookLists = DAO.AllCurrentBooks();
-        BookListView.setAdapter(new ArrayAdapter<>(
+
+        ListView bookListView = findViewById(R.id.listViewBookList);
+        final List<Book> bookLists = BookDAO.allCurrentBooks();
+
+        bookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 bookLists));
+
         flagBookList = 1;
-        BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book chosenBook = bookLists.get(position);
-                Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
-                OpenBookEditor.putExtra("book", chosenBook);
-                OpenBookEditor.putExtra("flag", flagBookList);
-                startActivity(OpenBookEditor);
+                Intent openBookEditorIntent = new Intent(MainActivity.this, EditBookActivity.class);
+                openBookEditorIntent.putExtra("book", chosenBook);
+                openBookEditorIntent.putExtra("flag", flagBookList);
+                startActivity(openBookEditorIntent);
 
             }
         });
     }
 
     private void ConfigureFinishedBookList() {
-        ListView BookListView = findViewById(R.id.listview_listofbooks);
-        final List<Book> bookLists = DAO.AllFinishedBooks();
-        BookListView.setAdapter(new ArrayAdapter<>(
+
+        ListView bookListView = findViewById(R.id.listViewBookList);
+        final List<Book> bookLists = BookDAO.allFinishedBooks();
+
+        bookListView.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 bookLists));
+
         flagBookList = 2;
-        BookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book chosenBook = bookLists.get(position);
-                Intent OpenBookEditor = new Intent(MainActivity.this, EditBookActivity.class);
-                OpenBookEditor.putExtra("book", chosenBook);
-                OpenBookEditor.putExtra("flag", flagBookList);
-                startActivity(OpenBookEditor);
+                Intent openBookEditorIntent = new Intent(MainActivity.this, EditBookActivity.class);
+                openBookEditorIntent.putExtra("book", chosenBook);
+                openBookEditorIntent.putExtra("flag", flagBookList);
+                startActivity(openBookEditorIntent);
 
             }
         });
     }
 
-    public void openNewBookActivity() {
+    public void OpenNewBookActivity() {
 
         Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
 
-    public void openNewAlarmActivity() {
+    public void OpenNewAlarmActivity() {
 
         Intent intent = new Intent(this, NewAlarmActivity.class);
         startActivity(intent);

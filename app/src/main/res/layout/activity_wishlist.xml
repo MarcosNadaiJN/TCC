@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textview_titlebooklistscreenWishList"
+        android:id="@+id/textViewTitleWishListActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -43,18 +43,18 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <TextView
-        android:id="@+id/textview_totalbooks_booklistscreenWishList"
+        android:id="@+id/textViewTotalBooksTitleWishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="4dp"
-        android:text="Total de Livros:"
+        android:text="@string/wishListSubTitle"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textview_titlebooklistscreenWishList"
-        app:layout_constraintStart_toStartOf="@+id/textview_titlebooklistscreenWishList"
-        app:layout_constraintTop_toBottomOf="@+id/textview_titlebooklistscreenWishList" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewTitleWishListActivity"
+        app:layout_constraintStart_toStartOf="@+id/textViewTitleWishListActivity"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleWishListActivity" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_topheader"
@@ -64,7 +64,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <TextView
-        android:id="@+id/textview_TotalBooksValue_WishList"
+        android:id="@+id/textViewTotalBooksValueWishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -73,11 +73,11 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textview_totalbooks_booklistscreenWishList"
-        app:layout_constraintStart_toEndOf="@+id/textview_totalbooks_booklistscreenWishList" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTotalBooksTitleWishList"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotalBooksTitleWishList" />
 
     <ListView
-        android:id="@+id/listview_listofbooks_wishList"
+        android:id="@+id/listViewWishList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_bottomheader" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton_newBook_wishlist"
+        android:id="@+id/floatingActionButtonNewWishListBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

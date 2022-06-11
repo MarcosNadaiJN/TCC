@@ -13,9 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-
 import java.util.Calendar;
 
 public class NewAlarmActivity extends AppCompatActivity {
@@ -29,18 +26,18 @@ public class NewAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_alarm);
-        InitializingFields();
-        ConfigureSetAlarmButton(alarmDAO);
-        ConfigurePickTimeButton();
+        initializingFields();
+        configureSetAlarmButton(alarmDAO);
+        configurePickTimeButton();
 
     }
 
-    private void InitializingFields() {
-        alarmTime = findViewById(R.id.edittext_alarmTime);
+    private void initializingFields() {
+        alarmTime = findViewById(R.id.editTextAlarmTime);
     }
 
-    private void ConfigureSetAlarmButton(AlarmDAO DAO) {
-        Button add = findViewById(R.id.button_setAlarm);
+    private void configureSetAlarmButton(AlarmDAO DAO) {
+        Button add = findViewById(R.id.buttonSetAlarm);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,8 +48,6 @@ public class NewAlarmActivity extends AppCompatActivity {
                 Intent intent = new Intent(NewAlarmActivity.this, AlarmReceiver.class);
                 PendingIntent alarmIntent = PendingIntent.getBroadcast(NewAlarmActivity.this,
                         requestCode, intent, 0);
-//                mgrAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//                        SystemClock.elapsedRealtime() + 30000 * requestCode, alarmIntent);
 
                 mgrAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
@@ -63,9 +58,9 @@ public class NewAlarmActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigurePickTimeButton() {
-        Button pickTime = findViewById(R.id.button_pickTime);
-        pickTime.setOnClickListener(new View.OnClickListener() {
+    private void configurePickTimeButton() {
+        Button pickTimeButton = findViewById(R.id.buttonPickTime);
+        pickTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 

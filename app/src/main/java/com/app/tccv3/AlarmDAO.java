@@ -31,19 +31,19 @@ public class AlarmDAO {
 
     }
 
-    public ArrayList<PendingIntent> AllCurrentAlarms() {
+    public static ArrayList<PendingIntent> AllCurrentAlarms() {
         return new ArrayList<>(intentArray);
     }
 
-    public int CurrentIDCounter() {
+    public static int CurrentIDCounter() {
         return IDCounter;
     }
 
-    public DateTime localTime() {
+    public static DateTime localTime() {
         return localTime;
     }
 
-    public MaterialTimePicker getTeste() {
+    public static MaterialTimePicker getTeste() {
         return teste;
     }
 
