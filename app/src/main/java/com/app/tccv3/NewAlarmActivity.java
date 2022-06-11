@@ -18,40 +18,36 @@ import java.util.Calendar;
 public class NewAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
-
-    private final AlarmDAO alarmDAO = new AlarmDAO();
-    private MaterialTimePicker picker = alarmDAO.getTeste();
+    private MaterialTimePicker picker = new MaterialTimePicker();
     private Calendar calendar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_alarm);
         initializingFields();
-        configureSetAlarmButton(alarmDAO);
+        configureSetAlarmButton();
         configurePickTimeButton();
-
     }
 
     private void initializingFields() {
         alarmTime = findViewById(R.id.editTextAlarmTime);
     }
 
-    private void configureSetAlarmButton(AlarmDAO DAO) {
+    private void configureSetAlarmButton() {
         Button add = findViewById(R.id.buttonSetAlarm);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlarmManager mgrAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-                int requestCode = alarmDAO.CurrentIDCounter();
 
                 Intent intent = new Intent(NewAlarmActivity.this, AlarmReceiver.class);
                 PendingIntent alarmIntent = PendingIntent.getBroadcast(NewAlarmActivity.this,
-                        requestCode, intent, 0);
+                        1, intent, 0);
 
                 mgrAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
-                alarmDAO.save(alarmIntent);
+                AlarmDAO.save(alarmIntent);
 
                 finish();
             }
@@ -65,7 +61,6 @@ public class NewAlarmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 
                 showTimePicker();
-
             }
         });
     }
@@ -86,6 +81,7 @@ public class NewAlarmActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 alarmTime.setText(String.format("%02d",picker.getHour())+":"+String.format("%02d",picker.getMinute()));
+                MainActivity.alarmTime = (String.format("%02d",picker.getHour())+":"+String.format("%02d",picker.getMinute()));
 
                 calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());

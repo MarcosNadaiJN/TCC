@@ -3,6 +3,7 @@ package com.app.tccv3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView leftBooksTextView;
     TextView progressValueTextView;
     ProgressBar progressBar;
-
-    private final AlarmDAO alarmDAO = new AlarmDAO();
+    public static String alarmTime = "00:00";
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
 
 
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (alarmDAO.AllCurrentAlarms().size() <= 0) {
+                if (AlarmDAO.AllCurrentAlarms().size() <= 0) {
                     OpenNewAlarmActivity();
                 } else {
                     OpenEditAlarmActivity();
@@ -187,19 +188,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void OpenWishListActivity() {
-
-        Intent intent = new Intent(this, WishListActivity.class);
-        startActivity(intent);
-    }
-
-
-    private void OpenEditAlarmActivity() {
-
-        Intent intent = new Intent(this, EditAlarmActivity.class);
-        startActivity(intent);
-    }
-
 
     private void configureCurrentBookList() {
 
@@ -257,9 +245,21 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void OpenWishListActivity() {
+
+        Intent intent = new Intent(this, WishListActivity.class);
+        startActivity(intent);
+    }
+
     public void OpenNewAlarmActivity() {
 
         Intent intent = new Intent(this, NewAlarmActivity.class);
+        startActivity(intent);
+    }
+
+    private void OpenEditAlarmActivity() {
+
+        Intent intent = new Intent(this, EditAlarmActivity.class);
         startActivity(intent);
     }
 
