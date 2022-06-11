@@ -173,7 +173,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                openAlarmListActivity();
+                if (alarmDAO.AllCurrentAlarms().size() <= 0) {
+                    openNewAlarmActivity();
+                } else {
+                    openEditAlarmActivity();
+                }
+
 
 //                alarmMgr = (AlarmManager) getSystemService(ALARM_SERVICE);
 //                Intent broadCastItent = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -193,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
 //                alarmDAO.save(alarmIntent);
             }
         });
+    }
+
+    private void openEditAlarmActivity() {
+        Intent intent = new Intent(this, EditAlarmActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -281,9 +291,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openAlarmListActivity() {
+    public void openNewAlarmActivity() {
 
-        Intent intent = new Intent(this, AlarmListActivity.class);
+        Intent intent = new Intent(this, NewAlarmActivity.class);
         startActivity(intent);
     }
 

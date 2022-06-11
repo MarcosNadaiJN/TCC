@@ -67,7 +67,6 @@ public class WishListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     private void ConfigureCurrentBookWishList() {
         ListView BookListView = findViewById(R.id.listview_listofbooks_wishList);
         final List<BookWishList> bookLists = DAO.AllWishListBooks();

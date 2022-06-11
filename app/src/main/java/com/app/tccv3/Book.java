@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-
-
     Book(String name, String Author, int totalPages, int CurrentPage){
 //        this.BookImage = Image;
         this.name = name;

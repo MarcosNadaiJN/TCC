@@ -1,7 +1,5 @@
 package com.app.tccv3;
 
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,30 +7,40 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.timepicker.MaterialTimePicker;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
+
+import java.util.Calendar;
+
 public class EditAlarmActivity extends AppCompatActivity {
 
     EditText alarmTime;
     Bundle alarm;
+    private final AlarmDAO alarmDAO = new AlarmDAO();
+    private MaterialTimePicker picker = alarmDAO.getTeste();
+
+    private String time;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_alarm);
         InitializingFields();
-
-        AlarmDAO DAO = new AlarmDAO();
-
-        ConfigureSetAlarmButton(DAO);
+        ConfigureSetAlarmButton(alarmDAO);
         ConfigurePickTimeButton();
         ConfigureCancelAlarmButton();
         getAlarmInformation();
     }
 
     private void getAlarmInformation() {
-        Intent data = getIntent();
-        alarm = data.getExtras();
-        System.out.println(alarm.toString());
+        Integer hour = picker.getHour();
+        Integer minute = picker.getMinute();
 
+        time = String.format("%02d",hour)+":"+String.format("%02d",minute);
+
+        alarmTime.setText(time);
     }
 
     private void InitializingFields() {
