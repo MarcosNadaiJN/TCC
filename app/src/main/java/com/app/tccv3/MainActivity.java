@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        ConfigureCurrentBookList();
+        configureCurrentBookList();
         configureHeaderBooks();
         ConfigureProgressBar();
         ConfigureProgressValue();
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configureHeaderBooks();
-                ConfigureCurrentBookList();
+                configureCurrentBookList();
             }
         });
     }
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void ConfigureCurrentBookList() {
+    private void configureCurrentBookList() {
 
         ListView bookListView = findViewById(R.id.listViewBookList);
         final List<Book> bookLists = BookDAO.allCurrentBooks();
