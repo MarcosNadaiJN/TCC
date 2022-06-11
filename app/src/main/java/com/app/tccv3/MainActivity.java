@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         configureCurrentBookList();
         configureHeaderBooks();
-        ConfigureProgressBar();
-        ConfigureProgressValue();
+        configureProgressBar();
+        configureProgressValue();
     }
 
     private void configNewBookButton() {
@@ -172,13 +172,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureProgressBar() {
+    private void configureProgressBar() {
 
         progressBar.setProgress(readPagesValue);
         progressBar.setMax(totalPagesValue);
     }
 
-    private void ConfigureProgressValue(){
+    private void configureProgressValue(){
 
         if (totalPagesValue > 0) {
             progressValueTextView.setText((readPagesValue *100)/ totalPagesValue + "%");
