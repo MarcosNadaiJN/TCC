@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     TextView leftBooksTextView;
     TextView progressValueTextView;
     ProgressBar progressBar;
-
-    private final AlarmDAO alarmDAO = new AlarmDAO();
+    public static String alarmTime = "00:00";
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
+    public static Integer currentActivity = 0; // 1 = EditAlarm -- 0 = NewAlarm
 
 
     @Override
@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        ConfigureCurrentBookList();
+        configureCurrentBookList();
         configureHeaderBooks();
-        ConfigureProgressBar();
-        ConfigureProgressValue();
+        configureProgressBar();
+        configureProgressValue();
     }
 
     private void configNewBookButton() {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                OpenNewBookActivity();
+                openNewBookActivity();
             }
         });
     }
@@ -81,11 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (alarmDAO.AllCurrentAlarms().size() <= 0) {
-                    OpenNewAlarmActivity();
-                } else {
-                    OpenEditAlarmActivity();
-                }
+                openEditAlarmActivity();
             }
         });
     }
@@ -98,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configureHeaderBooks();
-                ConfigureCurrentBookList();
+                configureCurrentBookList();
             }
         });
     }
@@ -111,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configureHeaderBooks();
-                ConfigureFinishedBookList();
+                configureFinishedBookList();
             }
         });
     }
@@ -167,18 +163,18 @@ public class MainActivity extends AppCompatActivity {
         wishListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWishListActivity();
+                openWishListActivity();
             }
         });
     }
 
-    private void ConfigureProgressBar() {
+    private void configureProgressBar() {
 
         progressBar.setProgress(readPagesValue);
         progressBar.setMax(totalPagesValue);
     }
 
-    private void ConfigureProgressValue(){
+    private void configureProgressValue(){
 
         if (totalPagesValue > 0) {
             progressValueTextView.setText((readPagesValue *100)/ totalPagesValue + "%");
@@ -187,21 +183,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void OpenWishListActivity() {
 
-        Intent intent = new Intent(this, WishListActivity.class);
-        startActivity(intent);
-    }
-
-
-    private void OpenEditAlarmActivity() {
-
-        Intent intent = new Intent(this, EditAlarmActivity.class);
-        startActivity(intent);
-    }
-
-
-    private void ConfigureCurrentBookList() {
+    private void configureCurrentBookList() {
 
         ListView bookListView = findViewById(R.id.listViewBookList);
         final List<Book> bookLists = BookDAO.allCurrentBooks();
@@ -226,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureFinishedBookList() {
+    private void configureFinishedBookList() {
 
         ListView bookListView = findViewById(R.id.listViewBookList);
         final List<Book> bookLists = BookDAO.allFinishedBooks();
@@ -251,15 +234,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void OpenNewBookActivity() {
+    public void openNewBookActivity() {
 
         Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
 
-    public void OpenNewAlarmActivity() {
+    public void openWishListActivity() {
 
-        Intent intent = new Intent(this, NewAlarmActivity.class);
+        Intent intent = new Intent(this, WishListActivity.class);
+        startActivity(intent);
+    }
+
+    private void openEditAlarmActivity() {
+
+        Intent intent = new Intent(this, AlarmActivity.class);
         startActivity(intent);
     }
 
