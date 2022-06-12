@@ -3,7 +3,6 @@ package com.app.tccv3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     public static String alarmTime = "00:00";
     private static Integer flagBookList = 0; // 1 for currentBookList   2 for FinishedBookList
+    public static Integer currentActivity = 0; // 1 = EditAlarm -- 0 = NewAlarm
 
 
     @Override
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                OpenNewBookActivity();
+                openNewBookActivity();
             }
         });
     }
@@ -82,11 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (AlarmDAO.AllCurrentAlarms().size() <= 0) {
-                    OpenNewAlarmActivity();
-                } else {
-                    OpenEditAlarmActivity();
-                }
+                openEditAlarmActivity();
             }
         });
     }
@@ -112,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configureHeaderBooks();
-                ConfigureFinishedBookList();
+                configureFinishedBookList();
             }
         });
     }
@@ -168,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         wishListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWishListActivity();
+                openWishListActivity();
             }
         });
     }
@@ -214,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ConfigureFinishedBookList() {
+    private void configureFinishedBookList() {
 
         ListView bookListView = findViewById(R.id.listViewBookList);
         final List<Book> bookLists = BookDAO.allFinishedBooks();
@@ -239,27 +234,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void OpenNewBookActivity() {
+    public void openNewBookActivity() {
 
         Intent intent = new Intent(this, NewBookActivity.class);
         startActivity(intent);
     }
 
-    public void OpenWishListActivity() {
+    public void openWishListActivity() {
 
         Intent intent = new Intent(this, WishListActivity.class);
         startActivity(intent);
     }
 
-    public void OpenNewAlarmActivity() {
+    private void openEditAlarmActivity() {
 
-        Intent intent = new Intent(this, NewAlarmActivity.class);
-        startActivity(intent);
-    }
-
-    private void OpenEditAlarmActivity() {
-
-        Intent intent = new Intent(this, EditAlarmActivity.class);
+        Intent intent = new Intent(this, AlarmActivity.class);
         startActivity(intent);
     }
 

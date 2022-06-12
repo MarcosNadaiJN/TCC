@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/editTextAlarmTimeEditor"
+                android:id="@+id/editTextAlarmTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -34,7 +34,7 @@
                 android:textSize="60sp" />
 
             <Button
-                android:id="@+id/buttonPickTimeEditor"
+                android:id="@+id/buttonPickTime"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -49,7 +49,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/buttonSetAlarmEditor"
+                android:id="@+id/buttonSetAlarm"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -64,7 +64,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/buttonDeleteAlarmEditor"
+                android:id="@+id/buttonDeleteAlarm"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
