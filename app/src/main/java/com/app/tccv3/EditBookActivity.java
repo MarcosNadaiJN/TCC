@@ -1,6 +1,7 @@
 package com.app.tccv3;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ public class EditBookActivity extends AppCompatActivity {
     ProgressBar bookProgressBar;
     Book book;
     Integer flagBookList;
+    String tempImage;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -117,7 +119,9 @@ public class EditBookActivity extends AppCompatActivity {
 
         Intent data = getIntent();
         book = (Book) data.getSerializableExtra("book");
-        bookImageImageView.setImageURI(book.getBookImageUri());
+        if(book.getBookImage() != null){
+            bookImageImageView.setImageURI(Uri.parse(book.getBookImage()));
+        }
         bookNameEditText.setText(book.getName());
         bookAuthorEditText.setText(book.getAuthor());
         bookTotalPagesValueEditText.setText(String.valueOf(book.getTotalPages()));
@@ -154,6 +158,7 @@ public class EditBookActivity extends AppCompatActivity {
         int bookCurrentPagesValue = Integer.parseInt(bookCurrentPages);
         int bookLeftPagesValue = bookTotalPagesValue - bookCurrentPagesValue;
 
+        book.setBookImage(tempImage);
         book.setName(bookName);
         book.setAuthor(bookAuthor);
         book.setTotalPages(bookTotalPagesValue);
@@ -170,5 +175,6 @@ public class EditBookActivity extends AppCompatActivity {
 
         Uri uri = data.getData();
         bookImageImageView.setImageURI(uri);
+        tempImage = uri.toString();
     }
 }

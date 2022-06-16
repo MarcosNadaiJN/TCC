@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/BookImageBookEditor"
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="16dp"
