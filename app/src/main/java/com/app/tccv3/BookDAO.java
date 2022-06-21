@@ -15,11 +15,11 @@ public class BookDAO {
 
     public static void initDadosTest() {
 
-        Book book1 = new Book("teste nf", "aut 1", 100, 10);
-        Book book2 = new Book("teste nf2", "aut 2", 200, 20);
+        Book book1 = new Book("Harry Potter", "J.K Rowling", 264, 88);
+        Book book2 = new Book("O Senhor dos Anéis", "J.R.R Tolkien", 434, 217);
 
-        Book book3 = new Book("teste f", "aut 2", 60, 60);
-        Book book4 = new Book("teste f2", "aut 3", 70, 70);
+        Book book3 = new Book("2001 Uma odisséia no espaço", "Arthur C. Clarke", 336, 336);
+        Book book4 = new Book("Perdido em Marte", "Andy Weir", 336, 336);
 
         save(book1);
         save(book2);

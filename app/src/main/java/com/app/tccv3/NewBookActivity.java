@@ -1,6 +1,7 @@
 package com.app.tccv3;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +26,8 @@ public class NewBookActivity extends AppCompatActivity {
     TextView bookCurrentPageTextView;
     TextView bookLeftPagesTextView;
     TextView bookLeftPagesValueTextView;
+    String tempImage;
     ImageView bookImageImageView;
-    Uri bookCoverImageUri;
     Book book;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class NewBookActivity extends AppCompatActivity {
         configureCancelButton();
         imagePicker();
         getBookInformation();
-
     }
 
     private void initializingFields() {
@@ -80,7 +80,7 @@ public class NewBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ImagePicker.Companion.with(NewBookActivity.this)
-                        //.galleryOnly()
+//                        .galleryOnly()
                         .crop()
                         .start();
             }
@@ -92,23 +92,24 @@ public class NewBookActivity extends AppCompatActivity {
         Intent data = getIntent();
         book = (Book) data.getSerializableExtra("book");
         if (data.getSerializableExtra("book") != null) {
-            bookImageImageView.setImageURI(book.getBookImageUri());
+            if(book.getBookImage() != null){
+                bookImageImageView.setImageURI(Uri.parse(book.getBookImage()));
+            }
             bookNameEditText.setText(book.getName());
             bookAuthorEditText.setText(book.getAuthor());
             bookTotalPagesValueEditText.setText(String.valueOf(book.getTotalPages()));
         }
-//        Intent flag = getIntent();
-//        flagBookList = (Integer) flag.getSerializableExtra("flag");
     }
 
     @NonNull
     private Book createBook() {
+        String bookImage = tempImage;
         String bookName = bookNameEditText.getText().toString();
         String bookAuthor = this.bookAuthorEditText.getText().toString();
         int bookTotalPages = Integer.parseInt(bookTotalPagesValueEditText.getText().toString());
         int bookCurrentPage = Integer.parseInt(bookCurrentPageValueEditText.getText().toString());
 
-        return new Book(bookName, bookAuthor, bookTotalPages, bookCurrentPage);
+        return new Book(bookImage, bookName, bookAuthor, bookTotalPages, bookCurrentPage);
     }
 
     //Sets PickedImage as BookImage
@@ -117,7 +118,7 @@ public class NewBookActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         Uri uri = data.getData();
-        bookCoverImageUri = uri;
         bookImageImageView.setImageURI(uri);
+        tempImage = uri.toString();
     }
 }

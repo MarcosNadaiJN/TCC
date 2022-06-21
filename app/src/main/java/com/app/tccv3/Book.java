@@ -1,13 +1,25 @@
 package com.app.tccv3;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.io.Serializable;
 
 public class Book implements Serializable {
 
+
+    Book(String bookImage, String name, String Author, int totalPages, int CurrentPage){
+        this.bookImage = bookImage;
+        this.name = name;
+        this.author = Author;
+        this.totalPages = totalPages;
+        this.currentPage = CurrentPage;
+        this.leftPages = totalPages - CurrentPage;
+        if (totalPages == CurrentPage) this.finished = true;
+        else this.finished = false;
+        this.id = BookDAO.iDCounter;
+    }
     Book(String name, String Author, int totalPages, int CurrentPage){
-//        this.BookImage = Image;
         this.name = name;
         this.author = Author;
         this.totalPages = totalPages;
@@ -19,7 +31,7 @@ public class Book implements Serializable {
     }
 
     private int id;
-    private Uri bookImageUri;
+    private String bookImage;
     private String name;
     private String author;
     private int totalPages;
@@ -36,12 +48,12 @@ public class Book implements Serializable {
         this.id = id;
     }
 
-    public Uri getBookImageUri() {
-        return bookImageUri;
+    public String getBookImage() {
+        return bookImage;
     }
 
-    public void setBookImageUri(Uri bookImageUri) {
-        this.bookImageUri = bookImageUri;
+    public void setBookImage(String bookImageUri) {
+        this.bookImage = bookImageUri;
     }
 
     public String getName() {
