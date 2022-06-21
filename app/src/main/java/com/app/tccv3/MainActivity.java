@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureProgressBar() {
 
-        progressBar.setProgress(readPagesValue);
         progressBar.setMax(totalPagesValue);
+        progressBar.setProgress(readPagesValue);
     }
 
     private void configureProgressValue(){

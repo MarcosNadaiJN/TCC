@@ -140,8 +140,8 @@ public class EditBookActivity extends AppCompatActivity {
 
     private void configureProgressBar() {
 
-        bookProgressBar.setProgress(book.getCurrentPage());
         bookProgressBar.setMax(book.getTotalPages());
+        bookProgressBar.setProgress(book.getCurrentPage());
     }
 
     private void configureProgressValue(){
